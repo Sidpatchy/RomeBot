@@ -1,4 +1,4 @@
-#Rome Bot by Synthetic Everything
+#Rome Bot by Rainverm38
 
 import discord
 from discord.ext import commands
