@@ -1,4 +1,5 @@
-#Rome Bot by Rainverm38
+# Rome Bot by Rainverm38
+# More info can be found on the GitHub here: https://github.com/Rainverm38/RomeBot
 
 import discord
 from discord.ext import commands
@@ -7,34 +8,34 @@ import asyncio
 import datetime
 
 
-#Prefix to be entered before commmands. Ex. !test
+# Prefix to be entered before commmands. Ex. !test
 bot = commands.Bot(command_prefix='!')
 
-#Gets time when bot is opened this has no use currently
+# Gets time when bot is opened this has no use currently
 currentDT = datetime.datetime.now()
 
-#Notify in console when bot is loaded and sets bot currently playing status
+# Notify in console when bot is loaded and sets bot currently playing status
 @bot.event
 async def on_ready():
-    await bot.change_presence(game=discord.Game(name='Salting Carthage'))   #Sets the bot's presence status. By default it is 'Salting Carthage'
+    await bot.change_presence(game=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. By default it is 'Salting Carthage'
     print('--------------------------')
-    currentDT = datetime.datetime.now()     #Gets current time
-    print(currentDT)    #Prints current time in console
-    print('Done Loading!')      #Prints 'Done Loading!' in console
+    currentDT = datetime.datetime.now()     # Gets current time
+    print(currentDT)    # Prints current time in console
+    print('Done Loading!')      # Prints 'Done Loading!' in console
     print('--------------------------')
 
-#Test command
+# Test command
 @bot.command(pass_context=True)
 async def test(ctx):
-    currentDT = datetime.datetime.now()     #Gets current time
-    print(' ')      #Skips a line in console
-    await bot.say('Working!')      #Types 'Working!' in discord channel where command was run
-    print('--------------------------')     #Divider to make console readable
-    print(currentDT)       #Prints time command was initiated in console
-    print('test has been run')     #Prints 'test has been run' in console
-    print('--------------------------')     #Divider to make console readable
+    currentDT = datetime.datetime.now()     # Gets current time
+    print(' ')      # Skips a line in console
+    await bot.say('Working!')      # Types 'Working!' in discord channel where command was run
+    print('--------------------------')     # Divider to make console readable
+    print(currentDT)       # Prints time command was initiated in console
+    print('test has been run')     # Prints 'test has been run' in console
+    print('--------------------------')     # Divider to make console readable
 
-#Info command
+# Info command
 @bot.command(pass_context=True)
 async def info(ctx):
     currentDT = datetime.datetime.now()
@@ -45,7 +46,7 @@ async def info(ctx):
     print('info has been run')
     print('--------------------------')
 
-#Lists available commands
+# Lists available commands
 @bot.command(pass_context=True)
 async def commands(ctx):
     currentDT = datetime.datetime.now()
@@ -62,7 +63,7 @@ async def commands(ctx):
     print('commands has been run')
     print('--------------------------')
 
-#Joined command
+# Joined command
 @bot.command(pass_context=True)
 async def joined(ctx, user: discord.Member):
     currentDT = datetime.datetime.now()
@@ -74,7 +75,7 @@ async def joined(ctx, user: discord.Member):
     print('joined has been run')
     print('--------------------------')
 
-#Crucify command (WIP)
+# Crucify command (WIP)
 @bot.command(pass_context=True)
 async def crucify(ctx, user: discord.Member):
     currentDT = datetime.datetime.now()
@@ -85,7 +86,7 @@ async def crucify(ctx, user: discord.Member):
     print('crucified has been run')
     print('--------------------------')
 
-#Prints server time
+# Prints server time
 @bot.command(pass_context=True)
 async def time(ctx):
     currentDT = datetime.datetime.now()
@@ -97,4 +98,4 @@ async def time(ctx):
     print('time has been run')
     print('--------------------------')
 
-bot.run('BOT_TOKEN_HERE')       #User defined bot token, get one here: https://discordapp.com/developers/applications/
+bot.run('BOT_TOKEN_HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
