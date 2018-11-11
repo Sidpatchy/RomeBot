@@ -97,4 +97,4 @@ async def time(ctx):
     print('time has been run')
     print('--------------------------')
 
-bot.run('NTExMDUwNDg5OTI4ODc2MDUy.DslZig.Rcr2feclu9USjdT3GbWoChaCYgE')
+bot.run('BOT_TOKEN_HERE')              #Bot Token
