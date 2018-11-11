@@ -1,4 +1,4 @@
-# Rome Bot by Rainverm38
+# RomeBot by Rainverm38
 # More info can be found on the GitHub here: https://github.com/Rainverm38/RomeBot
 
 import discord
@@ -59,6 +59,7 @@ async def commands(ctx):
     await bot.say('```!time: Lists the current time on the server hosting the bot, just cuz```')
     await bot.say('```!crucify @user: crucifies a mentioned user```')
     await bot.say('```!carthago_delanda_est: Rants in Latin about how CARTHAGO DELANDA EST!!!!!!```')
+    await bot.say('```!hangme: Dank ass I WANT TO GO HOME FROM WORK meme```')
 
 # Joined command
 @bot.command(pass_context=True)
@@ -110,4 +111,16 @@ async def carthago_delanda_est(ctx):
     print('carthago_delanda_est has been run')
     print('--------------------------')
 
-bot.run('BOT_TOKEN_HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+# !hangme command
+@bot.command(pass_context=True)
+async def hangme(ctx):
+    currentDT = datetime.datetime.now()
+    print(' ')
+    await bot.say('I got u fam:')
+    await bot.say('https://i.imgur.com/y4OuT7p.jpg')
+    print('--------------------------')
+    print(currentDT)
+    print('hangme has been run')
+    print('--------------------------')
+
+bot.run('TOKEN_HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
