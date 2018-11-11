@@ -40,7 +40,7 @@ async def test(ctx):
 async def info(ctx):
     currentDT = datetime.datetime.now()
     print(' ')
-    await bot.say('This is a bot that @Julius Caesar#4949 thought was a good idea to make. Why? because he was bored. This was written in Python 3.6 using Discord.py')
+    await bot.say('This is a bot that Rainverm38 thought was a good idea to make. Why? because he was bored. This was written in Python 3.6 using Discord.py')
     print('--------------------------')
     print(currentDT)
     print('info has been run')
@@ -56,12 +56,9 @@ async def commands(ctx):
     await bot.say('```!help: Lists commands and what they do (this)```')
     await bot.say('```!info: lists some info about the bot```')
     await bot.say('```!joined @user: Tells you what time the user mentioned joined the server```')
-    await bot.say('```!time: Lists the current time on the server hosting the bot, just cuz')
-    await bot.say('```!crucify: WIP, may not be finalized```')
-    print('--------------------------')
-    print(currentDT)
-    print('commands has been run')
-    print('--------------------------')
+    await bot.say('```!time: Lists the current time on the server hosting the bot, just cuz```')
+    await bot.say('```!crucify @user: crucifies a mentioned user```')
+    await bot.say('```!carthago_delanda_est: Rants in Latin about how CARTHAGO DELANDA EST!!!!!!```')
 
 # Joined command
 @bot.command(pass_context=True)
@@ -80,7 +77,8 @@ async def joined(ctx, user: discord.Member):
 async def crucify(ctx, user: discord.Member):
     currentDT = datetime.datetime.now()
     print(' ')
-    await bot.say('((This command is still a WIP) {} HAS BEEN CRUCIFIED!'.format(user.name))
+    await bot.say('({} HAS BEEN CRUCIFIED!'.format(user.name))
+    await bot.say('https://i.imgur.com/iFEBFmX.jpg')
     print('--------------------------')
     print(currentDT)
     print('crucified has been run')
@@ -96,6 +94,20 @@ async def time(ctx):
     print('--------------------------')
     print(currentDT)
     print('time has been run')
+    print('--------------------------')
+
+# Carthago Delanda Est!
+@bot.command(pass_context=True)
+async def carthago_delanda_est(ctx):
+    currentDT = datetime.datetime.now()
+    print(' ')
+    await bot.say('CARTHAGO DELANDA EST!!!')
+    await bot.say('QUAE CARTHAGINE CAPTA ESSE!')
+    await bot.say('SALSURA CARTHAGO!')
+    await bot.say('ROMA INVICTA! ROMA INVICTA! ROMA INVICTA! ROMA INVICTA!')
+    print('--------------------------')
+    print(currentDT)
+    print('carthago_delanda_est has been run')
     print('--------------------------')
 
 bot.run('BOT_TOKEN_HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
