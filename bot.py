@@ -16,23 +16,23 @@ currentDT = datetime.datetime.now()
 #Notify in console when bot is loaded and sets bot currently playing status
 @bot.event
 async def on_ready():
-    await bot.change_presence(game=discord.Game(name='Salting Carthage'))
+    await bot.change_presence(game=discord.Game(name='Salting Carthage'))   #Sets the bot's presence status. By default it is 'Salting Carthage'
     print('--------------------------')
-    print('Done Loading!')
-    print(' ')
-    print(currentDT)
+    currentDT = datetime.datetime.now()     #Gets current time
+    print(currentDT)    #Prints current time in console
+    print('Done Loading!')      #Prints 'Done Loading!' in console
     print('--------------------------')
 
 #Test command
 @bot.command(pass_context=True)
 async def test(ctx):
-    currentDT = datetime.datetime.now()
-    print(' ')
-    await bot.say('Working!')
-    print('--------------------------')
-    print(currentDT)
-    print('test has been run')
-    print('--------------------------')
+    currentDT = datetime.datetime.now()     #Gets current time
+    print(' ')      #Skips a line in console
+    await bot.say('Working!')      #Types 'Working!' in discord channel where command was run
+    print('--------------------------')     #Divider to make console readable
+    print(currentDT)       #Prints time command was initiated in console
+    print('test has been run')     #Prints 'test has been run' in console
+    print('--------------------------')     #Divider to make console readable
 
 #Info command
 @bot.command(pass_context=True)
@@ -97,4 +97,4 @@ async def time(ctx):
     print('time has been run')
     print('--------------------------')
 
-bot.run('BOT_TOKEN_HERE')              #Bot Token
+bot.run('BOT_TOKEN_HERE')       #User defined bot token, get one here: https://discordapp.com/developers/applications/
