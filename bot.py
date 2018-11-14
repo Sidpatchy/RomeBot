@@ -6,10 +6,11 @@ from discord.ext import commands
 from discord.ext.commands import bot
 import asyncio
 import datetime
+#import time     #Doesn't appear to be working here, must be imported before the command that requires it is run
 
 
 # Prefix to be entered before commmands. Ex. !test
-bot = commands.Bot(command_prefix='!')
+bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'test'
 
 # Gets time when bot is opened this has no use currently
 currentDT = datetime.datetime.now()
@@ -17,22 +18,22 @@ currentDT = datetime.datetime.now()
 # Notify in console when bot is loaded and sets bot currently playing status
 @bot.event
 async def on_ready():
-    await bot.change_presence(game=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. By default it is 'Salting Carthage'
+    await bot.change_presence(game=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
     print('--------------------------')
-    currentDT = datetime.datetime.now()     # Gets current time
-    print(currentDT)    # Prints current time in console
-    print('Done Loading!')      # Prints 'Done Loading!' in console
+    currentDT = datetime.datetime.now()         # Gets current time
+    print(currentDT)                            # Prints current time in console
+    print('Done Loading!')                      # Prints 'Done Loading!' in console
     print('--------------------------')
 
 # Test command
 @bot.command(pass_context=True)
-async def test(ctx):
+async def test(ctx):                        # Defines the command 'test'
     currentDT = datetime.datetime.now()     # Gets current time
-    print(' ')      # Skips a line in console
-    await bot.say('Working!')      # Types 'Working!' in discord channel where command was run
+    print(' ')                              # Skips a line in console
+    await bot.say('Working!')               # Types 'Working!' in discord channel where command was run
     print('--------------------------')     # Divider to make console readable
-    print(currentDT)       # Prints time command was initiated in console
-    print('test has been run')     # Prints 'test has been run' in console
+    print(currentDT)                        # Prints time command was initiated in console
+    print('test has been run')              # Prints 'test has been run' in console
     print('--------------------------')     # Divider to make console readable
 
 # Info command
@@ -51,15 +52,23 @@ async def info(ctx):
 async def commands(ctx):
     currentDT = datetime.datetime.now()
     print(' ')
+    import time
+    time.sleep(.5)      # Allows other bots to send their commands so that all listed commands can be displayed in one block.
     await bot.say('```Commands:```')
     await bot.say('```!test: Tests to see if the bot is working (if you are seeing this guess what? It is.)```')
-    await bot.say('```!help: Lists commands and what they do (this)```')
+    await bot.say('```!commands: Lists commands and what they do (this)```')
     await bot.say('```!info: lists some info about the bot```')
     await bot.say('```!joined @user: Tells you what time the user mentioned joined the server```')
     await bot.say('```!time: Lists the current time on the server hosting the bot, just cuz```')
     await bot.say('```!crucify @user: crucifies a mentioned user```')
     await bot.say('```!carthago_delanda_est: Rants in Latin about how CARTHAGO DELANDA EST!!!!!!```')
     await bot.say('```!hangme: Dank ass I WANT TO GO HOME FROM WORK meme```')
+    await bot.say('```!impale @user: Impales a mentioned user```')
+    await bot.say('```!stab @user: Stabs a mentioned user```')
+    print('--------------------------')
+    print(currentDT)
+    print('commands has been run')
+    print('--------------------------')
 
 # Joined command
 @bot.command(pass_context=True)
@@ -78,7 +87,7 @@ async def joined(ctx, user: discord.Member):
 async def crucify(ctx, user: discord.Member):
     currentDT = datetime.datetime.now()
     print(' ')
-    await bot.say('({} HAS BEEN CRUCIFIED!'.format(user.name))
+    await bot.say('{} HAS BEEN CRUCIFIED!'.format(user.name))
     await bot.say('https://i.imgur.com/iFEBFmX.jpg')
     print('--------------------------')
     print(currentDT)
@@ -123,4 +132,50 @@ async def hangme(ctx):
     print('hangme has been run')
     print('--------------------------')
 
-bot.run('TOKEN_HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+# isplaying comman, no real purpose, just a learning thing
+@bot.command(pass_context=True)
+async def isplaying(ctx, user: discord.Member):
+    currentDT = datetime.datetime.now()
+    print(' ')
+    await bot.say('Playing: {}'.format(user.game))
+    print('--------------------------')
+    print(currentDT)
+    print('isplaying has been run')
+    print('--------------------------')
+
+# FORTNITE DELANDA EST!!!
+#@bot.command(pass_context=True)
+#async def fortnite(ctx, user: discord.Member):
+#    currentDT = datetime.datetime.now()
+#    print(' ')
+#    playingFortnite = bot.say('Checking For Fortnite... User is playing: {}'.format(user.game))
+#    if playingFortnite == Fortnite:
+#        await bot.say('FUCK!')
+
+# Impale! Sends an image of mentioned @user being impaled 
+@bot.command(pass_context=True)
+async def impale(ctx, user: discord.Member):
+    currentDT = datetime.datetime.now()
+    print(' ')
+    await bot.say('{} Has Been Impaled!'.format(user.name))
+    await bot.say('https://i.imgur.com/rdSIwoq.jpg')
+    print('--------------------------')
+    print(currentDT)
+    print('impale has been run')
+    print('--------------------------')
+
+# Stab! Sends an image of mentioned @user being impaled
+@bot.command(pass_context=True)
+async def stab(ctx, user: discord.Member):
+    currentDT = datetime.datetime.now()
+    await bot.say('{} HAS BEEN STABBED!'.format(user.name))
+    await bot.say('https://i.imgur.com/Hx1pCcZ.jpg')
+    import time
+    time.sleep(3)
+    await bot.say('Oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooof')
+    print('--------------------------')
+    print(currentDT)
+    print('stab has been run')
+    print('--------------------------')
+
+bot.run('BOT_TOKEN_HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
