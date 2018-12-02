@@ -15,7 +15,7 @@ bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so 
 # Gets time when bot is opened this has no use currently
 currentDT = datetime.datetime.now()
 
-# Notify in console when bot is loaded and sets bot currently playing status
+# Notify in console when bot is loaded and sets bot currently playing status, basically any commands entered here are run when the bot is loaded and connected to Discord's servers
 @bot.event
 async def on_ready():
     await bot.change_presence(game=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
@@ -27,12 +27,12 @@ async def on_ready():
 
 # Test command
 @bot.command(pass_context=True)
-async def test(ctx):                        # Defines the command 'test'
-    currentDT = datetime.datetime.now()     # Gets current time
-    print(' ')                              # Skips a line in console
+async def test(ctx):                        # Defines the command 'test' so to run this command you type '!test'
+    currentDT = datetime.datetime.now()     # Gets current time and assigns it to a variable
+    print(' ')                              # Skips a line in console to help make it more readable
     await bot.say('Working!')               # Types 'Working!' in discord channel where command was run
     print('--------------------------')     # Divider to make console readable
-    print(currentDT)                        # Prints time command was initiated in console
+    print(currentDT)                        # Prints time command was run in the console, from the variable 'currentDT'
     print('test has been run')              # Prints 'test has been run' in console
     print('--------------------------')     # Divider to make console readable
 
@@ -54,8 +54,8 @@ async def commands(ctx):
     print(' ')
     import time
     time.sleep(.5)      # Allows other bots to send their commands so that all listed commands can be displayed in one block.
-    await bot.say('```Commands:```')
-    await bot.say('```!test: Tests to see if the bot is working (if you are seeing this guess what? It is.)```')
+    await bot.say('```Commands:```')                                                                                # Lines 57 through 67 are printed in a discord message, each seperately. 
+    await bot.say('```!test: Tests to see if the bot is working (if you are seeing this guess what? It is.)```')    
     await bot.say('```!commands: Lists commands and what they do (this)```')
     await bot.say('```!info: lists some info about the bot```')
     await bot.say('```!joined @user: Tells you what time the user mentioned joined the server```')
@@ -64,7 +64,7 @@ async def commands(ctx):
     await bot.say('```!carthago_delanda_est: Rants in Latin about how CARTHAGO DELANDA EST!!!!!!```')
     await bot.say('```!hangme: Dank ass I WANT TO GO HOME FROM WORK meme```')
     await bot.say('```!impale @user: Impales a mentioned user```')
-    await bot.say('```!stab @user: Stabs a mentioned user```')
+    await bot.say('```!stab @user: Stabs a mentioned user```')                                                       # End Garbage Posted In Discord
     print('--------------------------')
     print(currentDT)
     print('commands has been run')
@@ -126,7 +126,7 @@ async def hangme(ctx):
     currentDT = datetime.datetime.now()
     print(' ')
     await bot.say('I got u fam:')
-    await bot.say('https://i.imgur.com/y4OuT7p.jpg')
+    await bot.say('https://i.imgur.com/y4OuT7p.jpg')    # This is how I am showing images in the chat. There are more proper ways but this is easier and more reliable.
     print('--------------------------')
     print(currentDT)
     print('hangme has been run')
@@ -144,15 +144,9 @@ async def isplaying(ctx, user: discord.Member):
     print('--------------------------')
 
 # FORTNITE DELANDA EST!!!
-#@bot.command(pass_context=True)
-#async def fortnite(ctx, user: discord.Member):
-#    currentDT = datetime.datetime.now()
-#    print(' ')
-#    playingFortnite = bot.say('Checking For Fortnite... User is playing: {}'.format(user.game))
-#    if playingFortnite == Fortnite:
-#        await bot.say('FUCK!')
+# if .content.startswith(''):
 
-# Impale! Sends an image of mentioned @user being impaled 
+# Impale! Sends an image of mentioned @user being impaled
 @bot.command(pass_context=True)
 async def impale(ctx, user: discord.Member):
     currentDT = datetime.datetime.now()
@@ -178,4 +172,5 @@ async def stab(ctx, user: discord.Member):
     print('stab has been run')
     print('--------------------------')
 
-bot.run('BOT_TOKEN_HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+
+bot.run('INSERT BOT TOKEN HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
