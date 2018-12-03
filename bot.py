@@ -5,7 +5,7 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import bot
 import asyncio
-import datetime
+import datetime as DT
 #import time     #Doesn't appear to be working here, must be imported before the command that requires it is run
 
 
@@ -13,14 +13,14 @@ import datetime
 bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'test'
 
 # Gets time when bot is opened this has no use currently
-currentDT = datetime.datetime.now()
+currentDT = DT.datetime.now()
 
 # Notify in console when bot is loaded and sets bot currently playing status, basically any commands entered here are run when the bot is loaded and connected to Discord's servers
 @bot.event
 async def on_ready():
     await bot.change_presence(game=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
     print('--------------------------')
-    currentDT = datetime.datetime.now()         # Gets current time
+    currentDT = DT.datetime.now()         # Gets current time
     print(currentDT)                            # Prints current time in console
     print('Done Loading!')                      # Prints 'Done Loading!' in console
     print('--------------------------')
@@ -28,7 +28,7 @@ async def on_ready():
 # Test command
 @bot.command(pass_context=True)
 async def test(ctx):                        # Defines the command 'test' so to run this command you type '!test'
-    currentDT = datetime.datetime.now()     # Gets current time and assigns it to a variable
+    currentDT = DT.datetime.now()     # Gets current time and assigns it to a variable
     print(' ')                              # Skips a line in console to help make it more readable
     await bot.say('Working!')               # Types 'Working!' in discord channel where command was run
     print('--------------------------')     # Divider to make console readable
@@ -39,7 +39,7 @@ async def test(ctx):                        # Defines the command 'test' so to r
 # Info command
 @bot.command(pass_context=True)
 async def info(ctx):
-    currentDT = datetime.datetime.now()
+    currentDT = DT.datetime.now()
     print(' ')
     await bot.say('This is a bot that Rainverm38 thought was a good idea to make. Why? because he was bored. This was written in Python 3.6 using Discord.py')
     print('--------------------------')
@@ -50,7 +50,7 @@ async def info(ctx):
 # Lists available commands
 @bot.command(pass_context=True)
 async def commands(ctx):
-    currentDT = datetime.datetime.now()
+    currentDT = DT.datetime.now()
     print(' ')
     import time
     time.sleep(.5)      # Allows other bots to send their commands so that all listed commands can be displayed in one block.
@@ -73,7 +73,7 @@ async def commands(ctx):
 # Joined command
 @bot.command(pass_context=True)
 async def joined(ctx, user: discord.Member):
-    currentDT = datetime.datetime.now()
+    currentDT = DT.datetime.now()
     print(' ')
     await bot.say('The User: {}'.format(user.name))
     await bot.say('Joined At: {}'.format(user.joined_at))
@@ -85,7 +85,7 @@ async def joined(ctx, user: discord.Member):
 # Crucify command (WIP)
 @bot.command(pass_context=True)
 async def crucify(ctx, user: discord.Member):
-    currentDT = datetime.datetime.now()
+    currentDT = DT.datetime.now()
     print(' ')
     await bot.say('{} HAS BEEN CRUCIFIED!'.format(user.name))
     await bot.say('https://i.imgur.com/iFEBFmX.jpg')
@@ -97,7 +97,7 @@ async def crucify(ctx, user: discord.Member):
 # Prints server time
 @bot.command(pass_context=True)
 async def time(ctx):
-    currentDT = datetime.datetime.now()
+    currentDT = DT.datetime.now()
     print(' ')
     await bot.say('Server time is:')
     await bot.say(currentDT)
@@ -109,7 +109,7 @@ async def time(ctx):
 # Carthago Delanda Est!
 @bot.command(pass_context=True)
 async def carthago_delanda_est(ctx):
-    currentDT = datetime.datetime.now()
+    currentDT = DT.datetime.now()
     print(' ')
     await bot.say('CARTHAGO DELANDA EST!!!')
     await bot.say('QUAE CARTHAGINE CAPTA ESSE!')
@@ -123,7 +123,7 @@ async def carthago_delanda_est(ctx):
 # !hangme command
 @bot.command(pass_context=True)
 async def hangme(ctx):
-    currentDT = datetime.datetime.now()
+    currentDT = DT.datetime.now()
     print(' ')
     await bot.say('I got u fam:')
     await bot.say('https://i.imgur.com/y4OuT7p.jpg')    # This is how I am showing images in the chat. There are more proper ways but this is easier and more reliable.
@@ -135,7 +135,7 @@ async def hangme(ctx):
 # isplaying comman, no real purpose, just a learning thing
 @bot.command(pass_context=True)
 async def isplaying(ctx, user: discord.Member):
-    currentDT = datetime.datetime.now()
+    currentDT = DT.datetime.now()
     print(' ')
     await bot.say('Playing: {}'.format(user.game))
     print('--------------------------')
@@ -149,7 +149,7 @@ async def isplaying(ctx, user: discord.Member):
 # Impale! Sends an image of mentioned @user being impaled
 @bot.command(pass_context=True)
 async def impale(ctx, user: discord.Member):
-    currentDT = datetime.datetime.now()
+    currentDT = DT.datetime.now()
     print(' ')
     await bot.say('{} Has Been Impaled!'.format(user.name))
     await bot.say('https://i.imgur.com/rdSIwoq.jpg')
@@ -161,7 +161,7 @@ async def impale(ctx, user: discord.Member):
 # Stab! Sends an image of mentioned @user being impaled
 @bot.command(pass_context=True)
 async def stab(ctx, user: discord.Member):
-    currentDT = datetime.datetime.now()
+    currentDT = DT.datetime.now()
     await bot.say('{} HAS BEEN STABBED!'.format(user.name))
     await bot.say('https://i.imgur.com/Hx1pCcZ.jpg')
     import time
