@@ -1,4 +1,6 @@
 # RomeBot
 Bot By: Rainverm38
-This bot is a work in progress.
-Written in Python using version 3.6.x using Discord.py
+
+I am using this branch as a database for code I am unable to test at the time it was written and also as a place to update code which I dont have working yet.
+
+Written in Python using version 3.6.x using Discord.py.
