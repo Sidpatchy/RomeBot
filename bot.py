@@ -166,11 +166,23 @@ async def stab(ctx, user: discord.Member):
     await bot.say('https://i.imgur.com/Hx1pCcZ.jpg')
     import time
     time.sleep(3)
-    await bot.say('Oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooof')
+    await bot.say('Oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooof \(the 3 second delay was intentional btw\)')
     print('--------------------------')
     print(currentDT)
     print('stab has been run')
     print('--------------------------')
 
+# The bot flexes how badly written it's code is
+@bot.command(pass_context=True)
+async def flex(ctx):
+    currentDT = DT.datetime.now()
+    print(' ')
+    await bot.say('YOU ARE THE ONLY REAL PLEB! Your code is flawed my code however, is written in the most perfect and efficent way possible. If you somehow find that impossible to believe have a look at my GitHub. Then you\'ll truly see who is flawed, pleb. GIT REKT SCRUB!')
+    await bot.say('*hint click the link: https://github.com/Rainverm38/RomeBot*')
+    print('--------------------------')
+    print(currentDT)
+    print('stab has been run')
+    print('--------------------------')
+    
 
 bot.run('INSERT BOT TOKEN HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
