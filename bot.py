@@ -186,4 +186,4 @@ async def flex(ctx):
     print('--------------------------')
     
 
-bot.run('NTExMDUwNDg5OTI4ODc2MDUy.DudV1Q.Y2fTZtvT304YsKiGssq7_6zFMi8')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+bot.run('INSERT_BOT_TOKEN')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
