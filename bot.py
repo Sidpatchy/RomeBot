@@ -181,7 +181,7 @@ async def flex(ctx):
     await bot.say('*hint click the link: https://github.com/Rainverm38/RomeBot*')
     print('--------------------------')
     print(currentDT)
-    print('stab has been run')
+    print('flex has been run')
     print('--------------------------')
     
 
