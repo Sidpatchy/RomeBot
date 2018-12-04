@@ -54,7 +54,7 @@ async def commands(ctx):
     print(' ')
     import time
     time.sleep(.5)      # Allows other bots to send their commands so that all listed commands can be displayed in one block.
-    await bot.say('```Commands:```')                                                                                # Lines 57 through 67 are printed in a discord message, each seperately. 
+    await bot.say('```Commands:```')                                                                                # Lines 57 through 68 are printed in a discord message, each seperately. 
     await bot.say('```!test: Tests to see if the bot is working (if you are seeing this guess what? It is.)```')    
     await bot.say('```!commands: Lists commands and what they do (this)```')
     await bot.say('```!info: lists some info about the bot```')
@@ -64,7 +64,8 @@ async def commands(ctx):
     await bot.say('```!carthago_delanda_est: Rants in Latin about how CARTHAGO DELANDA EST!!!!!!```')
     await bot.say('```!hangme: Dank ass I WANT TO GO HOME FROM WORK meme```')
     await bot.say('```!impale @user: Impales a mentioned user```')
-    await bot.say('```!stab @user: Stabs a mentioned user```')                                                       # End Garbage Posted In Discord
+    await bot.say('```!stab @user: Stabs a mentioned user```')                                                       
+    await bot.say('```!flex: The bot flexes on how badly it is written```')
     print('--------------------------')
     print(currentDT)
     print('commands has been run')
