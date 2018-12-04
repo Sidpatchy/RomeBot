@@ -5,8 +5,8 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import bot
 import asyncio
-import datetime as DT
-#import time     #Doesn't appear to be working here, must be imported before the command that requires it is run
+import datetime as DT                       # Imports datetime as DT so instead of typing 'datetime.datetime.now()' you type 'DT.datetime.now()' it saves time and looks less dumb than 'datetime.datetime.now()'
+#import time                                # Doesn't appear to be working here, must be imported before the command that requires it is run.
 
 
 # Prefix to be entered before commmands. Ex. !test
@@ -20,21 +20,21 @@ currentDT = DT.datetime.now()
 async def on_ready():
     await bot.change_presence(game=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
     print('--------------------------')
-    currentDT = DT.datetime.now()         # Gets current time
+    currentDT = DT.datetime.now()               # Gets current time
     print(currentDT)                            # Prints current time in console
     print('Done Loading!')                      # Prints 'Done Loading!' in console
     print('--------------------------')
 
 # Test command
 @bot.command(pass_context=True)
-async def test(ctx):                        # Defines the command 'test' so to run this command you type '!test'
-    currentDT = DT.datetime.now()     # Gets current time and assigns it to a variable
-    print(' ')                              # Skips a line in console to help make it more readable
-    await bot.say('Working!')               # Types 'Working!' in discord channel where command was run
-    print('--------------------------')     # Divider to make console readable
-    print(currentDT)                        # Prints time command was run in the console, from the variable 'currentDT'
-    print('test has been run')              # Prints 'test has been run' in console
-    print('--------------------------')     # Divider to make console readable
+async def test(ctx):                            # Defines the command 'test' so to run this command you type '!test'
+    currentDT = DT.datetime.now()               # Gets current time and assigns it to a variable
+    print(' ')                                  # Skips a line in console to help make it more readable
+    await bot.say('Working!')                   # Types 'Working!' in discord channel where command was run
+    print('--------------------------')         # Divider to make console readable
+    print(currentDT)                            # Prints time command was run in the console, from the variable 'currentDT'
+    print('test has been run')                  # Prints 'test has been run' in console
+    print('--------------------------')         # Divider to make console readable
 
 # Info command
 @bot.command(pass_context=True)
@@ -132,7 +132,7 @@ async def hangme(ctx):
     print('hangme has been run')
     print('--------------------------')
 
-# isplaying comman, no real purpose, just a learning thing
+# isplaying command, no real purpose, just a learning thing
 @bot.command(pass_context=True)
 async def isplaying(ctx, user: discord.Member):
     currentDT = DT.datetime.now()
@@ -164,9 +164,9 @@ async def stab(ctx, user: discord.Member):
     currentDT = DT.datetime.now()
     await bot.say('{} HAS BEEN STABBED!'.format(user.name))
     await bot.say('https://i.imgur.com/Hx1pCcZ.jpg')
-    import time
-    time.sleep(3)
-    await bot.say('Oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooof \(the 3 second delay was intentional btw\)')
+    import time                                                                                                                     # Imports time, it doesn't work when imported when the bot is started
+    time.sleep(3)                                                                                                                   # Waits 3 seconds
+    await bot.say('Oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooof (the 3 second delay was intentional btw)')
     print('--------------------------')
     print(currentDT)
     print('stab has been run')
@@ -185,4 +185,4 @@ async def flex(ctx):
     print('--------------------------')
     
 
-bot.run('INSERT BOT TOKEN HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+bot.run('NTExMDUwNDg5OTI4ODc2MDUy.DudV1Q.Y2fTZtvT304YsKiGssq7_6zFMi8')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
