@@ -11,9 +11,7 @@ import datetime as DT                       # Imports datetime as DT so instead 
 
 # Prefix to be entered before commmands. Ex. !test
 bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'test'
-
-# Removes the default help command
-bot.remove_command('help')
+bot.remove_command('help')                  # Removes the default help command
 
 # Gets time when bot is opened this has no use currently
 currentDT = DT.datetime.now()
@@ -24,6 +22,7 @@ async def on_ready():
     await bot.change_presence(game=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
     print('--------------------------')
     currentDT = DT.datetime.now()               # Gets current time
+#    bot.remove_command('help')                  # Removes default help command
     print(currentDT)                            # Prints current time in console
     print('Done Loading!')                      # Prints 'Done Loading!' in console
     print('--------------------------')
@@ -50,25 +49,11 @@ async def info(ctx):
     print('info has been run')
     print('--------------------------')
 
-# Lists available commands
+# Originally listed commands. Now, it just tells the user to type !help instead
 @bot.command(pass_context=True)
 async def commands(ctx):
     currentDT = DT.datetime.now()
-    print(' ')
-    import time
-    time.sleep(.5)      # Allows other bots to send their commands so that all listed commands can be displayed in one block.
-    await bot.say('```Commands:```')                                                                                # Lines 57 through 68 are printed in a discord message, each seperately. 
-    await bot.say('```!test: Tests to see if the bot is working (if you are seeing this guess what? It is.)```')    
-    await bot.say('```!commands: Lists commands and what they do (this)```')
-    await bot.say('```!info: lists some info about the bot```')
-    await bot.say('```!joined @user: Tells you what time the user mentioned joined the server```')
-    await bot.say('```!time: Lists the current time on the server hosting the bot, just cuz```')
-    await bot.say('```!crucify @user: crucifies a mentioned user```')
-    await bot.say('```!carthago_delanda_est: Rants in Latin about how CARTHAGO DELANDA EST!!!!!!```')
-    await bot.say('```!hangme: Dank ass I WANT TO GO HOME FROM WORK meme```')
-    await bot.say('```!impale @user: Impales a mentioned user```')
-    await bot.say('```!stab @user: Stabs a mentioned user```')                                                       
-    await bot.say('```!flex: The bot flexes on how badly it is written```')
+    await bot.say('That command is no longer used, please use \'!help\' instead')
     print('--------------------------')
     print(currentDT)
     print('commands has been run')
@@ -86,7 +71,7 @@ async def joined(ctx, user: discord.Member):
     print('joined has been run')
     print('--------------------------')
 
-# Crucify command (WIP)
+# Crucify command
 @bot.command(pass_context=True)
 async def crucify(ctx, user: discord.Member):
     currentDT = DT.datetime.now()
@@ -119,6 +104,7 @@ async def carthago_delanda_est(ctx):
     await bot.say('QUAE CARTHAGINE CAPTA ESSE!')
     await bot.say('SALSURA CARTHAGO!')
     await bot.say('ROMA INVICTA! ROMA INVICTA! ROMA INVICTA! ROMA INVICTA!')
+    await bot.say('https://imgur.com/a/vSGcvtA')
     print('--------------------------')
     print(currentDT)
     print('carthago_delanda_est has been run')
@@ -188,7 +174,7 @@ async def flex(ctx):
     print('flex has been run')
     print('--------------------------')
 
-# Assassinates a pleb
+# Assassinates a mentioned pleb
 @bot.command(pass_context=True)
 async def assassinate(ctx, user: discord.Member):
     currentDT = DT.datetime.now()
@@ -202,12 +188,26 @@ async def assassinate(ctx, user: discord.Member):
     print(currentDT)
     print('assassinate has been run')
     print('--------------------------')
-
-
-
     
 # Adds a help command that sends a message to the user rather than spamming the chat, WIP
-# I lost my progress on this when I reinstalled Windows
+@bot.command(pass_context=True)
+async def help(ctx):
+    author = ctx.message.author
+    embed = discord.Embed(
+        color = discord.Color.red()
+    )
+    embed.set_author(name='Help')
+    embed.add_field(name='!test', value='Responds \'Working!\'', inline=False)
+    embed.add_field(name='!info', value='Gives some information about the bot', inline=False)
+    embed.add_field(name='!joined @user', value='States when a user joined the server', inline=False)
+    embed.add_field(name='!time', value='States what time it is on the server that the bot is hosted on', inline=False)
+    embed.add_field(name='!crucify @user', value='Crucifies a mentioned user', inline=False)
+    embed.add_field(name='!impale @user', value='Impales a mentioned user', inline=False)
+    embed.add_field(name='!stab @user', value='Stabs a mentioned user', inline=False)
+    embed.add_field(name='!assassinate @user', value='Has a user assassinated with the least offensive image possible (when talking about assassination)', inline=False)
+    embed.add_field(name='!carthago_delanda_est', value='Rants in Latin about how CARTHAGO DELANDA EST!!!', inline=False)
+    embed.add_field(name='!hangme', value='MLG I want to go home from (insert place name here)', inline=False)
+    embed.add_field(name='!flex', value='The bot flexes on how badly it is written and advertises it\'s GitHub', inline=False)
+    await bot.send_message(author, embed=embed)
 
-
-bot.run('INSERT_TOKEN_HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+bot.run('INSERT_BOT_TOKEN')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
