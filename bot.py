@@ -12,6 +12,9 @@ import datetime as DT                       # Imports datetime as DT so instead 
 # Prefix to be entered before commmands. Ex. !test
 bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'test'
 
+# Removes the default help command
+bot.remove_command('help')
+
 # Gets time when bot is opened this has no use currently
 currentDT = DT.datetime.now()
 
@@ -184,6 +187,27 @@ async def flex(ctx):
     print(currentDT)
     print('flex has been run')
     print('--------------------------')
-    
 
-bot.run('INSERT_BOT_TOKEN')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+# Assassinates a pleb
+@bot.command(pass_context=True)
+async def assassinate(ctx, user: discord.Member):
+    currentDT = DT.datetime.now()
+    print(' ')
+    await bot.say('WHOOP! WHOOP! {} HAS BEEN ASSASSINATED!!!'.format(user.name))
+    await bot.say('https://i.imgur.com/bgwNfdl.jpg this isn\'t insensitive, right?')
+    import time
+    time.sleep(2.5)
+    await bot.say('It took more effort than I want to admit to select an image that wont offend a (normal) person. After all, Hitler = bad. The delay in this message being sent was on purpose btw.')
+    print('--------------------------')
+    print(currentDT)
+    print('assassinate has been run')
+    print('--------------------------')
+
+
+
+    
+# Adds a help command that sends a message to the user rather than spamming the chat, WIP
+# I lost my progress on this when I reinstalled Windows
+
+
+bot.run('INSERT_TOKEN_HERE')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
