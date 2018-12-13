@@ -11,4 +11,4 @@ This bot is a work in progress.
 
 Written in Python using version 3.6.x using Discord.py
 
-To use this bot you must have discord.py, asyncio, and datetime installed.
+To host this bot you must have discord.py, asyncio, and datetime installed. Alternatively, you can invite it to your Discord server using this link: http://bit.ly/2Ek7Z72
