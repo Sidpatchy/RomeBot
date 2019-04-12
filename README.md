@@ -9,7 +9,7 @@ Now including 25% more glory in the same package! Nowhere else can you find so m
 
 Remember, Roma Invicta and Carthago Delanda Est!
 
-This bot is a work in progress.
+Currently, I have no plans to actively work on this, though, if I see any need for new features I will add them.
 
 Written in Python using version 3.6.x using Discord.py
 
