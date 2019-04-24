@@ -5,8 +5,9 @@ import discord
 from discord.ext import commands
 from discord.ext.commands import bot
 import asyncio
-import datetime as DT                       # Imports datetime as DT so instead of typing 'datetime.datetime.now()' you type 'DT.datetime.now()' it saves time and looks less dumb than 'datetime.datetime.now()'
-#import time                                # Doesn't appear to be working here, must be imported before the command that requires it is run.
+import datetime as DT                           # Imports datetime as DT so instead of typing 'datetime.datetime.now()' you type 'DT.datetime.now()' it saves time and looks less dumb than 'datetime.datetime.now()'
+#import time                                    # Doesn't appear to be working here, must be imported before the command that requires it is run.
+
 
 # Checks time that bot was started
 startTime = DT.datetime.now()
@@ -18,10 +19,9 @@ bot.remove_command('help')                  # Removes the default help command
 # Notify in console when bot is loaded and sets bot currently playing status, basically any commands entered here are run when the bot is loaded and connected to Discord's servers
 @bot.event
 async def on_ready():
-    endTime = DT.datetime.now()
     await bot.change_presence(game=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
     print('--------------------------')
-    timeToLoad = endTime - startTime
+    timeToLoad = DT.datetime.now() - startTime
     currentDT = DT.datetime.now()               # Gets current time
     print('Time to load:', timeToLoad)          # Prints the time to load
     print('Current Time:', currentDT)           # Prints current time in console
@@ -31,10 +31,13 @@ async def on_ready():
 # Test command
 @bot.command(pass_context=True)
 async def test(ctx):                            # Defines the command 'test' so to run this command you type '!test'
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()               # Gets current time and assigns it to a variable
     print(' ')                                  # Skips a line in console to help make it more readable
     await bot.say('Working!')                   # Types 'Working!' in discord channel where command was run
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')         # Divider to make console readable
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)           # Prints time command was run in the console, from the variable 'currentDT'
     print('test has been run')                  # Prints 'test has been run' in console
     print('--------------------------')         # Divider to make console readable
@@ -42,10 +45,13 @@ async def test(ctx):                            # Defines the command 'test' so 
 # Info command
 @bot.command(pass_context=True)
 async def info(ctx):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
     await bot.say('This is a bot that Rainverm38 thought was a good idea to make. Why? because he was bored. This was written in Python 3.6 using Discord.py')
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('info has been run')
     print('--------------------------')
@@ -53,9 +59,12 @@ async def info(ctx):
 # Originally listed commands. Now, it just tells the user to type !help instead
 @bot.command(pass_context=True)
 async def commands(ctx):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     await bot.say('That command is no longer used, please use \'!help\' instead')
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('commands has been run')
     print('--------------------------')
@@ -63,11 +72,14 @@ async def commands(ctx):
 # Joined command
 @bot.command(pass_context=True)
 async def joined(ctx, user: discord.Member):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
     await bot.say('The User: {}'.format(user.name))
     await bot.say('Joined At: {}'.format(user.joined_at))
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('joined has been run')
     print('--------------------------')
@@ -75,11 +87,14 @@ async def joined(ctx, user: discord.Member):
 # Crucify command
 @bot.command(pass_context=True)
 async def crucify(ctx, user: discord.Member):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
     await bot.say('{} HAS BEEN CRUCIFIED!'.format(user.name))
     await bot.say('https://i.imgur.com/iFEBFmX.jpg')
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run', timeToRun)
     print('Current Time:', currentDT)
     print('crucified has been run')
     print('--------------------------')
@@ -87,11 +102,14 @@ async def crucify(ctx, user: discord.Member):
 # Prints server time
 @bot.command(pass_context=True)
 async def time(ctx):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
     await bot.say('Server time is:')
     await bot.say(currentDT)
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run', timeToRun)
     print('Current Time:', currentDT)
     print('time has been run')
     print('--------------------------')
@@ -99,6 +117,7 @@ async def time(ctx):
 # Carthago Delanda Est!
 @bot.command(pass_context=True)
 async def carthago_delanda_est(ctx):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
     await bot.say('CARTHAGO DELANDA EST!!!')
@@ -107,7 +126,9 @@ async def carthago_delanda_est(ctx):
     await bot.say('ROMA INVICTA! ROMA INVICTA! ROMA INVICTA! ROMA INVICTA!')
     await bot.say('This crappy translation is brought to you by Google Translate')
     await bot.say('https://imgur.com/a/vSGcvtA')
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('carthago_delanda_est has been run')
     print('--------------------------')
@@ -115,11 +136,14 @@ async def carthago_delanda_est(ctx):
 # !hangme command
 @bot.command(pass_context=True)
 async def hangme(ctx):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
     await bot.say('I got u fam:')
     await bot.say('https://i.imgur.com/y4OuT7p.jpg')    # This is how I am showing images in the chat. There are more proper ways but this is easier and more reliable.
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('hangme has been run')
     print('--------------------------')
@@ -127,10 +151,13 @@ async def hangme(ctx):
 # isplaying command, no real purpose, just a learning thing
 @bot.command(pass_context=True)
 async def isplaying(ctx, user: discord.Member):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
     await bot.say('Playing: {}'.format(user.game))
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('isplaying has been run')
     print('--------------------------')
@@ -138,11 +165,14 @@ async def isplaying(ctx, user: discord.Member):
 # Impale! Sends an image of mentioned @user being impaled
 @bot.command(pass_context=True)
 async def impale(ctx, user: discord.Member):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
     await bot.say('{} Has Been Impaled!'.format(user.name))
     await bot.say('https://i.imgur.com/rdSIwoq.jpg')
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run', timeToRun)
     print('Current Time:', currentDT)
     print('impale has been run')
     print('--------------------------')
@@ -150,13 +180,16 @@ async def impale(ctx, user: discord.Member):
 # Stab! Sends an image of mentioned @user being impaled
 @bot.command(pass_context=True)
 async def stab(ctx, user: discord.Member):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     await bot.say('{} HAS BEEN STABBED!'.format(user.name))
     await bot.say('https://i.imgur.com/Hx1pCcZ.jpg')
     import time                                                                                                                     # Imports time, it doesn't work when imported when the bot is started
     time.sleep(3)                                                                                                                   # Waits 3 seconds
     await bot.say('Oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooof (the 3 second delay was intentional btw)')
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('stab has been run')
     print('--------------------------')
@@ -164,11 +197,14 @@ async def stab(ctx, user: discord.Member):
 # The bot flexes how badly written it's code is
 @bot.command(pass_context=True)
 async def flex(ctx):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
     await bot.say('YOU ARE THE ONLY REAL PLEB! Your code is flawed my code however, is written in the most perfect and efficent way possible. If you somehow find that impossible to believe have a look at my GitHub. Then you\'ll truly see who is flawed, pleb. GIT REKT SCRUB!')
     await bot.say('*hint click the link: https://github.com/Rainverm38/RomeBot*')
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('flex has been run')
     print('--------------------------')
@@ -176,6 +212,7 @@ async def flex(ctx):
 # Assassinates a mentioned pleb
 @bot.command(pass_context=True)
 async def assassinate(ctx, user: discord.Member):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
     await bot.say('WHOOP! WHOOP! {} HAS BEEN ASSASSINATED!!!'.format(user.name))
@@ -183,7 +220,9 @@ async def assassinate(ctx, user: discord.Member):
     import time
     time.sleep(2.5)
     await bot.say('It took more effort than I want to admit to select an image that wont offend a (normal) person. After all, Hitler = bad. The delay in this message being sent was on purpose btw.')
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('assassinate has been run')
     print('--------------------------')
@@ -191,6 +230,7 @@ async def assassinate(ctx, user: discord.Member):
 # Adds a help command that sends a message to the user rather than spamming the chat, WIP
 @bot.command(pass_context=True)
 async def help(ctx):
+    startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     author = ctx.message.author
     embed = discord.Embed(
@@ -209,7 +249,9 @@ async def help(ctx):
     embed.add_field(name='!hangme', value='MLG I want to go home from (insert place name here)', inline=False)
     embed.add_field(name='!flex', value='The bot flexes on how badly it is written and advertises it\'s GitHub', inline=False)
     await bot.send_message(author, embed=embed)
+    timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
+    print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('Help has been run')
     print('--------------------------')
