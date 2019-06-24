@@ -256,4 +256,4 @@ async def help(ctx):
     print('Help has been run')
     print('--------------------------')
 
-bot.run('NTExMDUwNDg5OTI4ODc2MDUy.XREmFQ.G-P3c0-WbIbCAcvffwgf9_pt_EM')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+bot.run('INSERT_TOKEN')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
