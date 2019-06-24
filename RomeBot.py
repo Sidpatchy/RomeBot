@@ -48,7 +48,7 @@ async def info(ctx):
     startTime = DT.datetime.now()
     currentDT = DT.datetime.now()
     print(' ')
-    await ctx.send('This is a bot that Rainverm38 thought was a good idea to make. Why? because he was bored. This was written in Python 3.6 using Discord.py')
+    await ctx.send('This is a bot that Rainverm38 thought was a good idea to make. Why? because he was bored. This was written in Python 3.7 using Discord.py')
     timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
     print('Time to Run:', timeToRun)
