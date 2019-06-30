@@ -10,7 +10,7 @@ import datetime as DT                           # Imports datetime as DT so inst
 
 
 # Checks time that bot was started
-startTime = DT.datetime.now()
+botStartTime = DT.datetime.now()
 
 # Prefix to be entered before commmands. Ex. !test
 bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'test'
@@ -21,7 +21,7 @@ bot.remove_command('help')                  # Removes the default help command
 async def on_ready():
     await bot.change_presence(activity=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
     print('--------------------------')
-    timeToLoad = DT.datetime.now() - startTime
+    timeToLoad = DT.datetime.now() - botStartTime
     currentDT = DT.datetime.now()               # Gets current time
     print('Time to load:', timeToLoad)          # Prints the time to load
     print('Current Time:', currentDT)           # Prints current time in console
@@ -226,7 +226,23 @@ async def assassinate(ctx, user: discord.Member):
     print('Current Time:', currentDT)
     print('assassinate has been run')
     print('--------------------------')
-    
+
+# Uptime command
+@bot.command(pass_context=True)
+async def uptime(ctx):
+    startTime = DT.datetime.now()
+    currentDT = DT.datetime.now()
+    print(' ')
+    runTime = DT.datetime.now() - botStartTime
+    await ctx.send('I have been online for:')
+    await ctx.send(runTime)
+    timeToRun = DT.datetime.now() - startTime
+    print('--------------------------')
+    print('Time to Run:', timeToRun)
+    print('Current Time:', currentDT)
+    print('uptime has been run')
+    print('--------------------------')
+
 # Adds a help command that sends a message to the user rather than spamming the chat, WIP
 @bot.command(pass_context=True)
 async def help(ctx):
@@ -248,6 +264,7 @@ async def help(ctx):
     embed.add_field(name='!carthago_delanda_est', value='Rants in Latin about how CARTHAGO DELANDA EST!!!', inline=False)
     embed.add_field(name='!hangme', value='MLG I want to go home from (insert place name here)', inline=False)
     embed.add_field(name='!flex', value='The bot flexes on how badly it is written and advertises it\'s GitHub', inline=False)
+    embed.add_field(name='!uptime', value='RomeBot reports how long it has gone without crashing, previously, this number has been above 2 days!', inline=False)
     await author.send(embed=embed)
     timeToRun = DT.datetime.now() - startTime
     print('--------------------------')
