@@ -20,7 +20,7 @@ bot.remove_command('help')                  # Removes the default help command
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
-    print('--------------------------')
+    print('---------RomeBot----------')
     timeToLoad = DT.datetime.now() - botStartTime
     currentDT = DT.datetime.now()               # Gets current time
     print('Time to load:', timeToLoad)          # Prints the time to load
@@ -36,7 +36,7 @@ async def test(ctx):                            # Defines the command 'test' so 
     print(' ')                                  # Skips a line in console to help make it more readable
     await ctx.send('Working!')                   # Types 'Working!' in discord channel where command was run
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')         # Divider to make console readable
+    print('---------RomeBot----------')         # Divider to make console readable
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)           # Prints time command was run in the console, from the variable 'currentDT'
     print('test has been run')                  # Prints 'test has been run' in console
@@ -50,7 +50,7 @@ async def info(ctx):
     print(' ')
     await ctx.send('This is a bot that Rainverm38 thought was a good idea to make. Why? because he was bored. This was written in Python 3.7 using Discord.py')
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('info has been run')
@@ -63,7 +63,7 @@ async def commands(ctx):
     currentDT = DT.datetime.now()
     await ctx.send('That command is no longer used, please use \'!help\' instead')
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('commands has been run')
@@ -78,7 +78,7 @@ async def joined(ctx, user: discord.Member):
     await ctx.send('The User: {}'.format(user.name))
     await ctx.send('Joined At: {}'.format(user.joined_at))
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('joined has been run')
@@ -93,7 +93,7 @@ async def crucify(ctx, user: discord.Member):
     await ctx.send('{} HAS BEEN CRUCIFIED!'.format(user.name))
     await ctx.send('https://i.imgur.com/iFEBFmX.jpg')
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run', timeToRun)
     print('Current Time:', currentDT)
     print('crucified has been run')
@@ -108,7 +108,7 @@ async def time(ctx):
     await ctx.send('Server time is:')
     await ctx.send(currentDT)
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run', timeToRun)
     print('Current Time:', currentDT)
     print('time has been run')
@@ -127,7 +127,7 @@ async def carthago_delanda_est(ctx):
     await ctx.send('This crappy translation is brought to you by Google Translate')
     await ctx.send('https://imgur.com/a/vSGcvtA')
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('carthago_delanda_est has been run')
@@ -142,7 +142,7 @@ async def hangme(ctx):
     await ctx.send('I got u fam:')
     await ctx.send('https://i.imgur.com/y4OuT7p.jpg')    # This is how I am showing images in the chat. There are more proper ways but this is easier and more reliable.
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('hangme has been run')
@@ -156,7 +156,7 @@ async def isplaying(ctx, user: discord.Member):
     print(' ')
     await ctx.send('Playing: {}'.format(user.activity))
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('isplaying has been run')
@@ -171,7 +171,7 @@ async def impale(ctx, user: discord.Member):
     await ctx.send('{} Has Been Impaled!'.format(user.name))
     await ctx.send('https://i.imgur.com/rdSIwoq.jpg')
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run', timeToRun)
     print('Current Time:', currentDT)
     print('impale has been run')
@@ -188,7 +188,7 @@ async def stab(ctx, user: discord.Member):
     time.sleep(3)                                                                                                                   # Waits 3 seconds
     await ctx.send('Oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooof (the 3 second delay was intentional btw)')
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('stab has been run')
@@ -203,7 +203,7 @@ async def flex(ctx):
     await ctx.send('YOU ARE THE ONLY REAL PLEB! Your code is flawed my code however, is written in the most perfect and efficent way possible. If you somehow find that impossible to believe have a look at my GitHub. Then you\'ll truly see who is flawed, pleb. GIT REKT SCRUB!')
     await ctx.send('*hint click the link: https://github.com/Rainverm38/RomeBot*')
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('flex has been run')
@@ -221,7 +221,7 @@ async def assassinate(ctx, user: discord.Member):
     time.sleep(2.5)
     await ctx.send('It took more effort than I want to admit to select an image that wont offend a (normal) person. After all, Hitler = bad. The delay in this message being sent was on purpose btw.')
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('assassinate has been run')
@@ -237,10 +237,44 @@ async def uptime(ctx):
     await ctx.send('I have been online for:')
     await ctx.send(runTime)
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('uptime has been run')
+    print('--------------------------')
+
+# Enslave Command
+@bot.command(pass_context=True)
+async def enslave(ctx, user: discord.Member):
+    startTime = DT.datetime.now()
+    currentDT = DT.datetime.now()
+    print(' ')
+    await ctx.send('OHHHH SHIT LOOK AT THE ECONOMY TICK, {} HAS BEEN ENSLAVED!'.format(user.name))
+    await ctx.send('CHUGA CHUGA CHOO CHOO')
+    await ctx.send('https://imgur.com/a/JPQtnLh, this was stolen from r/RoughRomanMemes')
+    timeToRun = DT.datetime.now() - startTime
+    print('---------RomeBot----------')
+    print('Time to Run:', timeToRun)
+    print('Current Time:', currentDT)
+    print('enslave has been run')
+    print('--------------------------')
+
+# lastupdate command
+@bot.command(pass_context=True)
+async def lastupdate(ctx):
+    startTime = DT.datetime.now()
+    currentDT = DT.datetime.now()
+    date = DT.datetime.now()
+    updateTime = date.replace(year=2019, month=6, day=30, hour=20, minute=29, second=2, microsecond=841873)
+    timeSinceUpdate = DT.datetime.now() - updateTime
+    await ctx.send('It has been')
+    await ctx.send(timeSinceUpdate) 
+    await ctx.send('since I was last updated')
+    timeToRun = DT.datetime.now() - startTime
+    print('---------RomeBot----------')
+    print('Time to Run:', timeToRun)
+    print('Current Time:', currentDT)
+    print('lastupdate has been run')
     print('--------------------------')
 
 # Adds a help command that sends a message to the user rather than spamming the chat, WIP
@@ -265,9 +299,11 @@ async def help(ctx):
     embed.add_field(name='!hangme', value='MLG I want to go home from (insert place name here)', inline=False)
     embed.add_field(name='!flex', value='The bot flexes on how badly it is written and advertises it\'s GitHub', inline=False)
     embed.add_field(name='!uptime', value='RomeBot reports how long it has gone without crashing, previously, this number has been above 2 days!', inline=False)
+    embed.add_field(name='!lastupdate', value='RomeBot reports how long he has gone without adding glory', inline=False)
+    embed.add_field(name='!enslave @user', value='Enslaves a mentioned user', inline=False)
     await author.send(embed=embed)
     timeToRun = DT.datetime.now() - startTime
-    print('--------------------------')
+    print('---------RomeBot----------')
     print('Time to Run:', timeToRun)
     print('Current Time:', currentDT)
     print('Help has been run')
