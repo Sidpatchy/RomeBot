@@ -9,7 +9,7 @@ Now including 25% more glory in the same package! Nowhere else can you find so m
 
 Remember, Roma Invicta and Carthago Delanda Est!
 
-Currently, I have no plans to actively work on this, though, if I see any need for new features I will add them.
+I have no plans for new features but I will add them as I see fit
 
 Written in Python using version 3.7.x using Discord.py
 
