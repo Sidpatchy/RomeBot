@@ -170,7 +170,7 @@ async def enslave(ctx, user: discord.Member):
 async def lastupdate(ctx):
     startTime = DT.datetime.now()
     date = DT.datetime.now()
-    updateTime = date.replace(year=2019, month=6, day=30, hour=20, minute=29, second=2, microsecond=841873)
+    updateTime = date.replace(year=2019, month=7, day=1, hour=20, minute=1, second=26, microsecond=178228)
     timeSinceUpdate = DT.datetime.now() - updateTime
     await ctx.send('It has been')
     await ctx.send(timeSinceUpdate) 
