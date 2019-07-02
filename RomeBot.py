@@ -16,13 +16,14 @@ botStartTime = DT.datetime.now()
 bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'test'
 bot.remove_command('help')                  # Removes the default help command
 
+# Handles what needs to be printed in the console
 def consoleOutput(commandName, commandTime):    # Defines consoleOutput()
     startTime = commandTime                     # (laziness) passing startTime from the beginning of the command into the function
     timeToRun = DT.datetime.now() - startTime
     print('')
     print('---------RomeBot----------')         # Divider to make console readable
     print('Time to Run:', timeToRun)            # Prints how long it took the bot to run the command
-    print('Current Time:', DT.datetime.now())     # Prints time command was run in the console, from the variable 'currentDT'
+    print('Current Time:', DT.datetime.now())   # Prints time command was run in the console, from the variable 'currentDT'
     print(commandName, 'has been run')          # Prints 'test has been run' in console
     print('--------------------------')         # Divider to make console readable
 
@@ -32,18 +33,18 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
     print('---------RomeBot----------')
     timeToLoad = DT.datetime.now() - botStartTime
-    print('Time to load:', timeToLoad)          # Prints the time to load
-    print('Current Time:', DT.datetime.now())           # Prints current time in console
-    print('Done Loading!')                      # Prints 'Done Loading!' in console
+    print('Time to load:', timeToLoad)              # Prints the time to load
+    print('Current Time:', DT.datetime.now())       # Prints current time in console
+    print('Done Loading!')                          # Prints 'Done Loading!' in console
     print('--------------------------')
 
 # Test command
 @bot.command(pass_context=True)
-async def test(ctx):                            # Defines the command 'test' so to run this command you type '!test'
-    startTime = DT.datetime.now()
+async def test(ctx):                             # Defines the command 'test' so to run this command you type '!test'
+    startTime = DT.datetime.now()                # Stores the time the command was initiated at
     await ctx.send('Working!')                   # Types 'Working!' in discord channel where command was run
     consoleOutput('test', startTime)
-
+    
 # Info command
 @bot.command(pass_context=True)
 async def info(ctx):
@@ -51,7 +52,7 @@ async def info(ctx):
     await ctx.send('This is a bot that Rainverm38 thought was a good idea to make. Why? because he was bored. This was written in Python 3.7 using Discord.py')
     consoleOutput('info', startTime)
 
-# Originally listed commands. Now, it just tells the user to type !help instead
+# Originally listed commands, now, it just tells the user to type '!help' instead
 @bot.command(pass_context=True)
 async def commands(ctx):
     startTime = DT.datetime.now()
@@ -99,7 +100,7 @@ async def carthago_delanda_est(ctx):
 async def hangme(ctx):
     startTime = DT.datetime.now()
     await ctx.send('I got u fam:')
-    await ctx.send('https://i.imgur.com/y4OuT7p.jpg')    # This is how I am showing images in the chat. There are more proper ways but this is easier and more reliable.
+    await ctx.send('https://i.imgur.com/y4OuT7p.jpg')    # This is how I am showing images in the chat. There are other ways but this is easier and more reliable.
     consoleOutput('hangme', startTime)
 
 # isplaying command, no real purpose, just a learning thing
@@ -128,11 +129,11 @@ async def stab(ctx, user: discord.Member):
     await ctx.send('Oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooof (the 3 second delay was intentional btw)')
     consoleOutput('stab', startTime)
 
-# The bot flexes how badly written it's code is
+# The bot flexes how badly written its code is
 @bot.command(pass_context=True)
 async def flex(ctx):
     startTime = DT.datetime.now()
-    await ctx.send('YOU ARE THE ONLY REAL PLEB! Your code is flawed my code however, is written in the most perfect and efficent way possible. If you somehow find that impossible to believe have a look at my GitHub. Then you\'ll truly see who is flawed, pleb. GIT REKT SCRUB!')
+    await ctx.send('YOU\'RE A PLEB! Your code is flawed my code however, is written in the most perfect and efficent way possible. If you somehow find that impossible to believe have a look at my GitHub. Then you\'ll truly see who is flawed, pleb. GIT REKT SCRUB!')
     await ctx.send('*hint click the link: https://github.com/Rainverm38/RomeBot*')
     consoleOutput('flex', startTime)
 
@@ -170,14 +171,75 @@ async def enslave(ctx, user: discord.Member):
 async def lastupdate(ctx):
     startTime = DT.datetime.now()
     date = DT.datetime.now()
-    updateTime = date.replace(year=2019, month=7, day=1, hour=20, minute=1, second=26, microsecond=178228)
+    updateTime = date.replace(year=2019, month=7, day=2, hour=15, minute=55, second=29, microsecond=589593)
     timeSinceUpdate = DT.datetime.now() - updateTime
     await ctx.send('It has been')
     await ctx.send(timeSinceUpdate) 
     await ctx.send('since I was last updated')
     consoleOutput('lastupdate', startTime)
 
-# Adds a help command that sends a message to the user rather than spamming the chat, WIP
+# Lists the number of servers RomeBot is in
+@bot.command(pass_context=True)
+async def servers(ctx):
+    startTime = DT.datetime.now()
+    numberOfServers = len(bot.guilds)
+    embed = discord.Embed(
+        color = discord.Color.red()
+    )
+    embed.add_field(name='Number of Servers:', value=numberOfServers, inline=False)
+    await ctx.send(embed=embed)
+    consoleOutput('servers', startTime)
+
+# Poena cullei (penalty of the sack) command, seriously, read about it: https://en.wikipedia.org/wiki/Poena_cullei
+# I almost don't want to joke about it and you've seen some of the other crap that I've put in here
+@bot.command(pass_context=True)
+async def poneacullei(ctx, user: discord.Member):
+    startTime = DT.datetime.now()
+    await ctx.send('FUUUUUUUUCK {} GOT SACKED!'.format(user.name))
+    await ctx.send('Like literally, he got sacked, I highly recommend you read this page on it: https://en.wikipedia.org/wiki/Poena_cullei')
+    await ctx.send('They blindfolded them, said you were unworthy of light, took them to a field and beat them until they couldn\'t take it anymore, then threw them into a sack along with a serpent, an ape, a dog, and a rooster, then they sewed it up, THEN, they threw you into the sea.')
+    await ctx.send('https://i.imgur.com/yReOk5o.jpg')
+    consoleOutput('poneacullei', startTime)
+
+# Jupiterhates left command
+@bot.command(pass_context=True)
+async def jupiterhates(ctx, user: discord.Member):
+    startTime = DT.datetime.now()
+    await ctx.send('{} pissed off Jupiter, they\'re now dead press \'F\''.format(user.name))
+    await ctx.send('https://i.imgur.com/u6h7E8y.jpg')
+    consoleOutput('jupiterhates', startTime)
+
+# Idus Martiae
+@bot.command(pass_context=True)
+async def ides(ctx):
+    startTime = DT.datetime.now()
+    await ctx.send('FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF RIP RIP R I P RIP A RONI SAD ROMEBOT HOURS')
+    await ctx.send('GOD DIED ON THE IDES (of March) WE DON\'T JOKE ABOUT THAT!')
+    consoleOutput('ides', startTime)
+
+# Brutus supporter
+@bot.command(pass_context=True)
+async def brutussupporter(ctx, user: discord.Member):
+    startTime = DT.datetime.now()
+    await ctx.send('Guess what! That\'s right! {} is a dick, ass kickings can be sent directly to their house'.format(user.name))
+    await ctx.send('https://i.imgur.com/WIa1uIC.jpg')
+    consoleOutput('brutussupporter', startTime)
+
+# lengthtogodbday command
+@bot.command(pass_context=True)
+async def lengthtogodbday(ctx):
+    startTime = DT.datetime.now()
+    date = DT.datetime.now()
+    godBirthday = date.replace(year=2019, month=7, day=7, hour=12, minute=0, second=0, microsecond=0)
+    timeTo = godBirthday - DT.datetime.now()
+    embed = discord.Embed(
+        color = discord.Color.red()
+    )
+    embed.add_field(name='We only have to wait:', value=timeTo, inline=False)
+    await ctx.send(embed=embed)
+    consoleOutput('lengthtogodbday', startTime)
+
+# Adds a help command that sends a message to the user rather than spamming the chat with a long message
 @bot.command(pass_context=True)
 async def help(ctx):
     startTime = DT.datetime.now()
@@ -199,7 +261,13 @@ async def help(ctx):
     embed.add_field(name='!flex', value='The bot flexes on how badly it is written and advertises it\'s GitHub', inline=False)
     embed.add_field(name='!uptime', value='RomeBot reports how long it has gone without crashing, previously, this number has been above 2 days!', inline=False)
     embed.add_field(name='!lastupdate', value='RomeBot reports how long he has gone without adding glory', inline=False)
-    embed.add_field(name='!enslave @user', value='Enslaves a mentioned user', inline=False)
+    embed.add_field(name='!enslave @user', value='Enslaves a mentioned user for the betterment of the Rome', inline=False)
+    embed.add_field(name='!servers', value='RomeBot states how many servers it is a member of', inline=False)
+    embed.add_field(name='!poneacullei @user', value='Ponea cullei, punishment of the sack. Sacks a mentioned user.', inline=False)
+    embed.add_field(name='!jupiterhates @user', value='Jupiter strikes down a mentioned user', inline=False)
+    embed.add_field(name='!ides', value='Cries about the sad thing it was just reminded of', inline=False)
+    embed.add_field(name='!brutussupporter @user', value='Calls out a Brutus supporter\'s BS and calls for their ass kicking', inline=False)
+    embed.add_field(name='!lengthtogodbday', value='Lists how long it is until Julius Caesar\'s birthday. Since we don\'t know which day it was I calculate from July 7 at 12pm to get the midpoint between the 2 days.')
     await author.send(embed=embed)
     consoleOutput('help', startTime)
 
