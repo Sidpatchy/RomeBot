@@ -30,7 +30,7 @@ def consoleOutput(commandName, commandTime):    # Defines consoleOutput()
 # Notify in console when bot is loaded and sets bot currently playing status, basically any commands entered here are run when the bot is loaded and connected to Discord's servers
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game(name='Salting Carthage'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
+    await bot.change_presence(activity=discord.Game(name='Salting Carthage | !help'))   # Sets the bot's presence status. In this case it is 'Salting Carthage'
     print('---------RomeBot----------')
     timeToLoad = DT.datetime.now() - botStartTime
     print('Time to load:', timeToLoad)              # Prints the time to load
@@ -171,7 +171,7 @@ async def enslave(ctx, user: discord.Member):
 async def lastupdate(ctx):
     startTime = DT.datetime.now()
     date = DT.datetime.now()
-    updateTime = date.replace(year=2019, month=7, day=2, hour=15, minute=55, second=29, microsecond=589593)
+    updateTime = date.replace(year=2019, month=7, day=3, hour=12, minute=48, second=4, microsecond=782066)
     timeSinceUpdate = DT.datetime.now() - updateTime
     await ctx.send('It has been')
     await ctx.send(timeSinceUpdate) 
@@ -227,10 +227,13 @@ async def brutussupporter(ctx, user: discord.Member):
 
 # lengthtogodbday command
 @bot.command(pass_context=True)
-async def lengthtogodbday(ctx):
+async def caesarnatalis(ctx):
     startTime = DT.datetime.now()
-    date = DT.datetime.now()
-    godBirthday = date.replace(year=2019, month=7, day=7, hour=12, minute=0, second=0, microsecond=0)
+    year = startTime.year
+    time = startTime.replace(year=year, month=7, day=7, hour=12, minute=0, second=0, microsecond=0)
+    if DT.datetime.now() >= time:
+        year = year + 1
+    godBirthday = startTime.replace(year=year, month=7, day=7, hour=12, minute=0, second=0, microsecond=0)
     timeTo = godBirthday - DT.datetime.now()
     embed = discord.Embed(
         color = discord.Color.red()
@@ -267,7 +270,7 @@ async def help(ctx):
     embed.add_field(name='!jupiterhates @user', value='Jupiter strikes down a mentioned user', inline=False)
     embed.add_field(name='!ides', value='Cries about the sad thing it was just reminded of', inline=False)
     embed.add_field(name='!brutussupporter @user', value='Calls out a Brutus supporter\'s BS and calls for their ass kicking', inline=False)
-    embed.add_field(name='!lengthtogodbday', value='Lists how long it is until Julius Caesar\'s birthday. Since we don\'t know which day it was I calculate from July 7 at 12pm to get the midpoint between the 2 days.')
+    embed.add_field(name='!nataliscaesar', value='Lists how long it is until Julius Caesar\'s birthday. Since we don\'t know which day it was I calculate from July 7 at 12pm to get the midpoint between the 2 days.')
     await author.send(embed=embed)
     consoleOutput('help', startTime)
 
