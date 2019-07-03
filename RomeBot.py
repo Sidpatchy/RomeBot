@@ -270,7 +270,7 @@ async def help(ctx):
     embed.add_field(name='!jupiterhates @user', value='Jupiter strikes down a mentioned user', inline=False)
     embed.add_field(name='!ides', value='Cries about the sad thing it was just reminded of', inline=False)
     embed.add_field(name='!brutussupporter @user', value='Calls out a Brutus supporter\'s BS and calls for their ass kicking', inline=False)
-    embed.add_field(name='!nataliscaesar', value='Lists how long it is until Julius Caesar\'s birthday. Since we don\'t know which day it was I calculate from July 7 at 12pm to get the midpoint between the 2 days.')
+    embed.add_field(name='!caesarnatalis', value='Lists how long it is until Julius Caesar\'s birthday. Since we don\'t know which day it was I calculate from July 7 at 12pm to get the midpoint between the 2 days.')
     await author.send(embed=embed)
     consoleOutput('help', startTime)
 
