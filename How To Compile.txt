@@ -1,0 +1,33 @@
+You may want to compile one of my Discord bots for a number of reasons, the primary reason, perhaps, is to avoid having to install Python on the machine it will be run on. Either way, here is a small and rather undetailed guide on how to do that.
+
+Windows:
+
+Step 1:
+Ensure you have the most recent supported version of Python installed. Currently, RomeBot uses, and is tested with, Python 3.7, as a result I recommend using the most recent version of 3.7.
+
+Step 2:
+Installing PyInstaller. You can use the command: 'pip install PyInstaller' or find it on PyPi if you don't trust me https://pypi.org/project/PyInstaller/
+
+Step 3:
+Modify the file 'RomeBot.py'
+
+The last line of my Discord bots will, for the foreseeable future always be the line in which your bot token must be added.
+
+To get a bot token head over to https://discordapp.com/developers/applications and create a bot if you haven't doneso already.
+
+Second, open RomeBot.py in any text editor, and replace the final line "bot.run('INSERT_TOKEN')" with "bot.run('exampletoken123')"
+
+Then save the file and run it to make sure it works. If it does, congratulations, you are most of the way there.
+
+Step 4:
+I now recommend creating a separate directory (folder) and copying RomeBot.py to that.
+
+Next, open up the command prompt in that directory using the command "cd C:\Users\YOUR USER NAME\Documents\CompiledBot" this requires modification on your part and assumes the folder is called "CompiledBot"
+
+Step 5:
+Now, enter "pyinstaller -F RomeBot.py" into the command line. This will compile RomeBot.
+
+Step 6:
+Open up the folder titled 'dist' and double click RomeBot.exe to open it.
+
+Congratulations! You have successfully compiled RomeBot.
