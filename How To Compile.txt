@@ -1,6 +1,23 @@
 You may want to compile one of my Discord bots for a number of reasons, the primary reason, perhaps, is to avoid having to install Python on the machine it will be run on. Either way, here is a small and rather undetailed guide on how to do that.
 
-Windows:
+Windows (automatic):
+
+Step 1:
+To get a bot token head over to https://discordapp.com/developers/applications and create a bot if you haven't done so already.
+
+Step 2:
+Open the file titled compiler.bat
+
+Step 3:
+The file will ask for a bot token, paste the exact token in by right-clicking or hitting Ctrl + V
+
+Step 4:
+Wait for the script to finish and then open RomeBot.exe. 
+Congratulations! You successfully compiled RomeBot
+
+Windows (manual):
+Video for beginners: https://www.youtube.com/watch?v=hkkoQSetoNk
+Video for advanced users: https://www.youtube.com/watch?v=pUcDd_E7m7A
 
 Step 1:
 Ensure you have the most recent supported version of Python installed. Currently, RomeBot uses, and is tested with, Python 3.7, as a result I recommend using the most recent version of 3.7.
@@ -13,7 +30,7 @@ Modify the file 'RomeBot.py'
 
 The last line of my Discord bots will, for the foreseeable future always be the line in which your bot token must be added.
 
-To get a bot token head over to https://discordapp.com/developers/applications and create a bot if you haven't doneso already.
+To get a bot token head over to https://discordapp.com/developers/applications and create a bot if you haven't done so already.
 
 Second, open RomeBot.py in any text editor, and replace the final line "bot.run('INSERT_TOKEN')" with "bot.run('exampletoken123')"
 

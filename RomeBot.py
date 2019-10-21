@@ -273,4 +273,6 @@ async def help(ctx):
     await author.send(embed=embed)
     consoleOutput('help', startTime)
 
-bot.run('INSERT_TOKEN')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+# UNCOMMENT THE NEXT LINE IF YOU AREN'T COMPILING USING THE BATCH FILE
+#bot.run('INSERT_TOKEN')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+
