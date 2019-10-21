@@ -9,6 +9,6 @@ Remember, Roma Invicta and Carthago Delanda Est!
 
 I have no plans for new features but I will add them as I see fit
 
-Written in Python using version 3.7.x using Discord.py
+Written in Python using version 3.7.x using Discord.py (though I plan on updating to Python 3.8 as soon as all of the libraries are updated)
 
 To host this bot you must have discord.py, asyncio, and datetime installed. Alternatively, you can invite it to your Discord server using this link: http://bit.ly/2Ek7Z72
