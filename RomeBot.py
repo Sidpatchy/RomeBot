@@ -1,13 +1,12 @@
-# RomeBot by Rainverm38
-# More info can be found on the GitHub here: https://github.com/Rainverm38/RomeBot
+# RomeBot by Sidpatchy
+# More info can be found on the GitHub here: https://github.com/Sidpatchy/RomeBot
 
 import discord
 from discord.ext import commands
 from discord.ext.commands import bot
 import asyncio
 import datetime as DT                           # Imports datetime as DT so instead of typing 'datetime.datetime.now()' you type 'DT.datetime.now()' it saves time and looks less dumb than 'datetime.datetime.now()'
-import time
-from time import sleep                          # Imports sleep because importing time doesn't
+from time import sleep                          # Imports sleep because time.sleep() doesn't work
 
 
 # Checks time that bot was started
@@ -64,7 +63,7 @@ async def commands(ctx):
 @bot.command(pass_context=True)
 async def joined(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('The User: {}'.format(user.nick))
+    await ctx.send('The User: {}'.format(user.name))
     await ctx.send('Joined At: {}'.format(user.joined_at))
     consoleOutput('joined', startTime)
 
@@ -72,7 +71,7 @@ async def joined(ctx, user: discord.Member):
 @bot.command(pass_context=True)
 async def crucify(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('{} HAS BEEN CRUCIFIED!'.format(user.nick))
+    await ctx.send('{} HAS BEEN CRUCIFIED!'.format(user.name))
     await ctx.send('https://i.imgur.com/iFEBFmX.jpg')
     consoleOutput('crucify', startTime)
 
@@ -115,7 +114,7 @@ async def isplaying(ctx, user: discord.Member):
 @bot.command(pass_context=True)
 async def impale(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('{} Has Been Impaled!'.format(user.nick))
+    await ctx.send('{} Has Been Impaled!'.format(user.name))
     await ctx.send('https://i.imgur.com/rdSIwoq.jpg')
     consoleOutput('impale', startTime)
 
@@ -123,9 +122,9 @@ async def impale(ctx, user: discord.Member):
 @bot.command(pass_context=True)
 async def stab(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('{} HAS BEEN STABBED!'.format(user.nick))
-    await ctx.send('https://i.imgur.com/Hx1pCcZ.jpg')                                                                                                                 # Imports time, it doesn't work when imported when the bot is started
-    time.sleep(3)                                                                                                                   # Waits 3 seconds
+    await ctx.send('{} HAS BEEN STABBED!'.format(user.name))
+    await ctx.send('https://i.imgur.com/Hx1pCcZ.jpg')
+    sleep(3)                                                                                                                   # Waits 3 seconds
     await ctx.send('Oooooooooooooooooooooooooooooooooooooooooooooooooooooooooooof (the 3 second delay was intentional btw)')
     consoleOutput('stab', startTime)
 
@@ -134,16 +133,16 @@ async def stab(ctx, user: discord.Member):
 async def flex(ctx):
     startTime = DT.datetime.now()
     await ctx.send('YOU\'RE A PLEB! Your code is flawed my code however, is written in the most perfect and efficent way possible. If you somehow find that impossible to believe have a look at my GitHub. Then you\'ll truly see who is flawed, pleb. GIT REKT SCRUB!')
-    await ctx.send('*hint click the link: https://github.com/Rainverm38/RomeBot*')
+    await ctx.send('*hint click the link: https://github.com/Sidpatchy/RomeBot*')
     consoleOutput('flex', startTime)
 
 # Assassinates a mentioned pleb
 @bot.command(pass_context=True)
 async def assassinate(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('WHOOP! WHOOP! {} HAS BEEN ASSASSINATED!!!'.format(user.nick))
+    await ctx.send('WHOOP! WHOOP! {} HAS BEEN ASSASSINATED!!!'.format(user.name))
     await ctx.send('https://i.imgur.com/bgwNfdl.jpg this isn\'t insensitive, right?')
-    time.sleep(2.5)
+    sleep(2.5)
     await ctx.send('It took more effort than I want to admit to select an image that wont offend a (normal) person. After all, Hitler = bad. The delay in this message being sent was on purpose btw.')
     consoleOutput('assassinate', startTime)
 
@@ -160,7 +159,7 @@ async def uptime(ctx):
 @bot.command(pass_context=True)
 async def enslave(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('OHHHH SHIT LOOK AT THE ECONOMY TICK, {} HAS BEEN ENSLAVED!'.format(user.nick))
+    await ctx.send('OHHHH SHIT LOOK AT THE ECONOMY TICK, {} HAS BEEN ENSLAVED!'.format(user.name))
     await ctx.send('CHUGA CHUGA CHOO CHOO')
     await ctx.send('https://i.imgur.com/XsCNL8o.jpg, this was stolen from r/RoughRomanMemes')
     consoleOutput('enslave', startTime)
@@ -170,7 +169,7 @@ async def enslave(ctx, user: discord.Member):
 async def lastupdate(ctx):
     startTime = DT.datetime.now()
     date = DT.datetime.now()
-    updateTime = date.replace(year=2019, month=7, day=3, hour=12, minute=48, second=4, microsecond=782066)
+    updateTime = date.replace(year=2019, month=12, day=2, hour=18, minute=45, second=52, microsecond=883736)
     timeSinceUpdate = DT.datetime.now() - updateTime
     await ctx.send('It has been')
     await ctx.send(timeSinceUpdate) 
@@ -194,7 +193,7 @@ async def servers(ctx):
 @bot.command(pass_context=True)
 async def poneacullei(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('FUUUUUUUUCK {} GOT SACKED!'.format(user.nick))
+    await ctx.send('FUUUUUUUUCK {} GOT SACKED!'.format(user.name))
     await ctx.send('Like literally, he got sacked, I highly recommend you read this page on it: https://en.wikipedia.org/wiki/Poena_cullei')
     await ctx.send('They blindfolded them, said you were unworthy of light, took them to a field and beat them until they couldn\'t take it anymore, then threw them into a sack along with a serpent, an ape, a dog, and a rooster, then they sewed it up, THEN, they threw you into the sea.')
     await ctx.send('https://i.imgur.com/yReOk5o.jpg')
@@ -204,7 +203,7 @@ async def poneacullei(ctx, user: discord.Member):
 @bot.command(pass_context=True)
 async def jupiterhates(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('{} pissed off Jupiter, they\'re now dead press \'F\''.format(user.nick))
+    await ctx.send('{} pissed off Jupiter, they\'re now dead press \'F\''.format(user.name))
     await ctx.send('https://i.imgur.com/u6h7E8y.jpg')
     consoleOutput('jupiterhates', startTime)
 
@@ -220,7 +219,7 @@ async def ides(ctx):
 @bot.command(pass_context=True)
 async def brutussupporter(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('Guess what! That\'s right! {} is a dick, ass kickings can be sent directly to their house'.format(user.nick))
+    await ctx.send('Guess what! That\'s right! {} is a dick, ass kickings can be sent directly to their house'.format(user.name))
     await ctx.send('https://i.imgur.com/WIa1uIC.jpg')
     consoleOutput('brutussupporter', startTime)
 
@@ -275,4 +274,3 @@ async def help(ctx):
 
 # UNCOMMENT THE NEXT LINE IF YOU AREN'T COMPILING USING THE BATCH FILE
 #bot.run('INSERT_TOKEN')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
-
