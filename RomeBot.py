@@ -244,7 +244,7 @@ async def caesarnatalis(ctx):
 @bot.command(pass_context=True)
 async def version(ctx):
     startTime = DT.datetime.now()
-    await ctx.send('RomeBot Version 1.0.2 | Released 12/15/2019')
+    await ctx.send('RomeBot Version 1.1.1 | Released 12/15/2019')
     consoleOutput('version', startTime)
 
 # Adds a help command that sends a message to the user rather than spamming the chat with a long message
