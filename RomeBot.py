@@ -169,14 +169,14 @@ async def enslave(ctx, user: discord.Member):
 async def lastupdate(ctx):
     startTime = DT.datetime.now()
     date = DT.datetime.now()
-    updateTime = date.replace(year=2019, month=12, day=2, hour=18, minute=45, second=52, microsecond=883736)
+    updateTime = date.replace(year=2019, month=12, day=15, hour=12, minute=29, second=13, microsecond=585921)
     timeSinceUpdate = DT.datetime.now() - updateTime
     await ctx.send('It has been')
     await ctx.send(timeSinceUpdate) 
     await ctx.send('since I was last updated')
     consoleOutput('lastupdate', startTime)
 
-# Lists the number of servers RomeBot is in
+# server command. Lists the number of servers RomeBot is in
 @bot.command(pass_context=True)
 async def servers(ctx):
     startTime = DT.datetime.now()
@@ -240,6 +240,13 @@ async def caesarnatalis(ctx):
     await ctx.send(embed=embed)
     consoleOutput('caesarnatalis', startTime)
 
+# Version command
+@bot.command(pass_context=True)
+async def version(ctx):
+    startTime = DT.datetime.now()
+    await ctx.send('RomeBot Version 1.0.2 | Released 12/15/2019')
+    consoleOutput('version', startTime)
+
 # Adds a help command that sends a message to the user rather than spamming the chat with a long message
 @bot.command(pass_context=True)
 async def help(ctx):
@@ -268,7 +275,8 @@ async def help(ctx):
     embed.add_field(name='!jupiterhates @user', value='Jupiter strikes down a mentioned user', inline=False)
     embed.add_field(name='!ides', value='Cries about the sad thing it was just reminded of', inline=False)
     embed.add_field(name='!brutussupporter @user', value='Calls out a Brutus supporter\'s BS and calls for their ass kicking', inline=False)
-    embed.add_field(name='!caesarnatalis', value='Lists how long it is until Julius Caesar\'s birthday. Since we don\'t know which day it was I calculate from July 7 at 12pm to get the midpoint between the 2 days.')
+    embed.add_field(name='!caesarnatalis', value='Lists how long it is until Julius Caesar\'s birthday. Since we don\'t know which day it was I calculate from July 7 at 12pm to get the midpoint between the 2 days.', inline=False)
+    embed.add_field(name='!version', value='Gives the version number and release date being run', inline=False)
     await author.send(embed=embed)
     consoleOutput('help', startTime)
 
