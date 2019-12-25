@@ -11,4 +11,4 @@ I have no plans for new features but I will add them as I see fit
 
 Written in Python using version 3.8(.0) using Discord.py
 
-To host this bot you must have discord.py, asyncio, and datetime installed. Alternatively, you can invite it to your Discord server using this link: http://bit.ly/2Ek7Z72
+To host this bot you must have discord.py, asyncio, and datetime installed. Alternatively, you can invite it to your Discord server using this link: https://discord.bots.gg/bots/511050489928876052
