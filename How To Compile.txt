@@ -6,7 +6,8 @@ Step 1:
 To get a bot token head over to https://discordapp.com/developers/applications and create a bot if you haven't done so already.
 
 Step 2:
-Open the file titled compiler.bat
+Open the file titled compiler.bat. This will update pip, for any reason, if you don't want this, please do remove the 5th line from the batch file.
+It will immediately begin to install the libraries RomeBot needs to run, as well as the library we will use to compile RomeBot. This can take some time, be patient.
 
 Step 3:
 The file will ask for a bot token, paste the exact token in by right-clicking or hitting Ctrl + V
@@ -16,11 +17,11 @@ Wait for the script to finish and then open RomeBot.exe.
 Congratulations! You successfully compiled RomeBot
 
 Windows (manual):
-Video for beginners: https://www.youtube.com/watch?v=hkkoQSetoNk
-Video for advanced users: https://www.youtube.com/watch?v=pUcDd_E7m7A
+Video for beginners (slower, more easy to follow along with): https://www.youtube.com/watch?v=hkkoQSetoNk
+Video for advanced users (faster paced): https://www.youtube.com/watch?v=pUcDd_E7m7A
 
 Step 1:
-Ensure you have the most recent supported version of Python installed. Currently, RomeBot uses, and is tested with, Python 3.7, as a result I recommend using the most recent version of 3.7.
+Ensure you have the most recent supported version of Python installed. Currently, RomeBot uses, and is tested with, Python 3.8, as a result I recommend using the most recent version of 3.8. But it should work with anything from 3.6-3.8.
 
 Step 2:
 Installing PyInstaller. You can use the command: 'pip install PyInstaller' or find it on PyPi if you don't trust me https://pypi.org/project/PyInstaller/
@@ -32,7 +33,7 @@ The last line of my Discord bots will, for the foreseeable future always be the 
 
 To get a bot token head over to https://discordapp.com/developers/applications and create a bot if you haven't done so already.
 
-Second, open RomeBot.py in any text editor, and replace the final line "bot.run('INSERT_TOKEN')" with "bot.run('exampletoken123')"
+Second, open RomeBot.py in a text editor of your choice, and replace the final line "bot.run('INSERT_TOKEN')" with "bot.run('exampletoken123')" ensure you do not remove the apostrophes. This will cause an error.
 
 Then save the file and run it to make sure it works. If it does, congratulations, you are most of the way there.
 
