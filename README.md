@@ -1,7 +1,7 @@
 # RomeBot by Sidpatchy
 Get Started By Typing !help
 
-RomeBot is a very basic chat bot I created it to bring some more fun to my Discord Server, and... who doesn't need the Glory of Rome in everything they do?
+RomeBot is a basic chat bot I created it to bring some more fun to my Discord Server, and... who doesn't need the Glory of Rome in everything they do?
 
 Now including 25% more glory in the same package! Nowhere else can you find so much glory packed into such a small package. Only 16  kilobytes! 
 
