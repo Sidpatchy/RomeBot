@@ -7,7 +7,7 @@ from discord.ext.commands import bot
 import asyncio
 import datetime as DT                           # Imports datetime as DT so instead of typing 'datetime.datetime.now()' you type 'DT.datetime.now()' it saves time and looks less dumb than 'datetime.datetime.now()'
 from time import sleep                          # Imports sleep because time.sleep() doesn't work
-
+import os
 
 # Checks time that bot was started
 botStartTime = DT.datetime.now()
@@ -15,6 +15,13 @@ botStartTime = DT.datetime.now()
 # Prefix to be entered before commmands. Ex. !test
 bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'test'
 bot.remove_command('help')                  # Removes the default help command
+
+# Creates a log file if it doesn't exist and then writes to the log file, whether or not it just created it, what time the bot was started.
+f = open('RomeBotLogs.txt', 'a')
+f.write('\nRomeBot ready! | ')
+f.write(str(DT.datetime.now()))
+f.write('\n')
+f.close()
 
 # Handles what needs to be printed in the console
 def consoleOutput(commandName, commandTime):    # Defines consoleOutput()
@@ -27,6 +34,19 @@ def consoleOutput(commandName, commandTime):    # Defines consoleOutput()
     print(commandName, 'has been run')          # Prints 'test has been run' in console
     print('--------------------------')         # Divider to make console readable
 
+    # Write to log
+    f = open('RomeBotLogs.txt', 'a')
+    f.write('\n---------RomeBot----------\n')
+    f.write('Time to Run: ')
+    f.write(str(timeToRun))
+    f.write('\nCurrent Time: ')
+    f.write(str(DT.datetime.now()))
+    f.write('\n')
+    f.write(str(commandName))                   # commandName should always be a string, this is just to limit any possible errors in the future.
+    f.write(' has been run\n')
+    f.write('--------------------------\n')
+    f.close()
+
 # Notify in console when bot is loaded and sets bot currently playing status, basically any commands entered here are run when the bot is loaded and connected to Discord's servers
 @bot.event
 async def on_ready():
@@ -38,13 +58,22 @@ async def on_ready():
     print('Done Loading!')                          # Prints 'Done Loading!' in console
     print('--------------------------')
 
+    # Write to log file
+    f = open('RomeBotLogs.txt', 'a')
+    f.write('\nRomeBot connected! | ')
+    f.write(str(DT.datetime.now()))
+    f.write('\nTime to connect: ')
+    f.write(str(timeToLoad))
+    f.write('\n')
+    f.close()
+
 # Test command
 @bot.command(pass_context=True)
 async def test(ctx):                             # Defines the command 'test' so to run this command you type '!test'
     startTime = DT.datetime.now()                # Stores the time the command was initiated at
     await ctx.send('Working!')                   # Types 'Working!' in discord channel where command was run
     consoleOutput('test', startTime)
-    
+
 # Info command
 @bot.command(pass_context=True)
 async def info(ctx):
@@ -143,7 +172,7 @@ async def assassinate(ctx, user: discord.Member):
     await ctx.send('WHOOP! WHOOP! {} HAS BEEN ASSASSINATED!!!'.format(user.display_name))
     await ctx.send('https://i.imgur.com/bgwNfdl.jpg this isn\'t insensitive, right?')
     sleep(2.5)
-    await ctx.send('It took more effort than I want to admit to select an image that wont offend a (normal) person. After all, Hitler = bad. The delay in this message being sent was on purpose btw.')
+    await ctx.send('It took more effort than I want to admit to select an image that wont offend anyone.')
     consoleOutput('assassinate', startTime)
 
 # Uptime command
@@ -151,8 +180,7 @@ async def assassinate(ctx, user: discord.Member):
 async def uptime(ctx):
     startTime = DT.datetime.now()
     runTime = DT.datetime.now() - botStartTime
-    await ctx.send('I have been online for:')
-    await ctx.send(runTime)
+    await ctx.send('I have been online for: {}'.format(runTime))
     consoleOutput('uptime', startTime)
 
 # Enslave Command
@@ -160,7 +188,7 @@ async def uptime(ctx):
 async def enslave(ctx, user: discord.Member):
     startTime = DT.datetime.now()
     await ctx.send('OHHHH SHIT LOOK AT THE ECONOMY TICK, {} HAS BEEN ENSLAVED!'.format(user.display_name))
-    await ctx.send('CHUGA CHUGA CHOO CHOO')
+    await ctx.send('CHUGA CHUGA CHOO CHOO (the sound the economy makes I don\'t know what I was thinking)')
     await ctx.send('https://i.imgur.com/XsCNL8o.jpg, this was stolen from r/RoughRomanMemes')
     consoleOutput('enslave', startTime)
 
@@ -169,11 +197,9 @@ async def enslave(ctx, user: discord.Member):
 async def lastupdate(ctx):
     startTime = DT.datetime.now()
     date = DT.datetime.now()
-    updateTime = date.replace(year=2019, month=12, day=18, hour=18, minute=35, second=40, microsecond=0)
+    updateTime = date.replace(year=2020, month=03, day=23, hour=11, minute=16, second=0, microsecond=0)
     timeSinceUpdate = DT.datetime.now() - updateTime
-    await ctx.send('It has been')
-    await ctx.send(timeSinceUpdate) 
-    await ctx.send('since I was last updated')
+    await ctx.send('It has been {} since I was last updated'.format(timeSinceUpdate))
     consoleOutput('lastupdate', startTime)
 
 # server command. Lists the number of servers RomeBot is in
@@ -244,7 +270,7 @@ async def caesarnatalis(ctx):
 @bot.command(pass_context=True)
 async def version(ctx):
     startTime = DT.datetime.now()
-    await ctx.send('RomeBot Version 1.1.2 | Released 12/18/2019')
+    await ctx.send('RomeBot Version 1.2.0 | Released 2020-03-23')
     consoleOutput('version', startTime)
 
 # Adds a help command that sends a message to the user rather than spamming the chat with a long message
