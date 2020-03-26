@@ -9,6 +9,7 @@ import datetime as DT                           # Imports datetime as DT so inst
 from time import sleep                          # Imports sleep because time.sleep() doesn't work
 import os
 import sqlite3
+import re
 
 # Checks time that bot was started
 botStartTime = DT.datetime.now()
@@ -63,27 +64,45 @@ def consoleOutput(commandName, commandTime):    # Defines consoleOutput()
     f.close()
 
 # Handles shit that needs to be written to the database
-def writeDB(serverID, commandName, enabled):
+def writeDB(serverID, featureIndex, enabled):
     conn = sqlite3.connect('RomeBot.db')
     c = conn.cursor()
-    if commandName == 'registerServer':
+    if featureIndex == 'registerServer':
         c.execute("DELETE FROM servers WHERE serverID = {}".format(serverID))
         c.execute("INSERT OR IGNORE INTO servers VALUES ('{}', '{}')".format(serverID, enabled))
         conn.commit()
         print('Registered', serverID, 'to database!')
-    elif commandName == 'testing':
-        c.execute("""UPDATE servers SET testing = ?
-                    WHERE serverID = ?""",
-                    (enabled, serverID))
+    elif int(featureIndex) >= 3:
+        DB = readDB(serverID, featureIndex)
+        posToEdit = int(2 + (19 - (DB[1] - 2)))
+        regex = re.compile(r'[^\d.]+')
+        #First parameter is the replacement, second parameter is your input string
+        DB2 = regex.sub('', DB[2])
+        print(DB2)
+        if DB[0] == True:
+            updatePos = int(int(DB2) - (1 * (10 ^ posToEdit)))
+        elif DB[0] == False:
+            updatePos = int(int(DB2) + 1 * (10 ^ posToEdit))
+        print(updatePos)
+        return
+        c.execute("""UPDATE servers SET features = {}
+                    WHERE serverID = ?""".format(updatePos))
     conn.commit()
     conn.close()
 
 # Handles Reading the Database
-def readDB(serverID):
+def readDB(serverID, featureIndex):
     conn = sqlite3.connect('RomeBot.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM servers WHERE serverID = '{}'".format(serverID))
-    print(c.fetchall())
+    c.execute("SELECT features FROM servers WHERE serverID = '{}'".format(serverID))
+    enabled = str(c.fetchall())
+#    print(enabled)
+#    print(enabled[featureIndex])
+    fIndex = int(enabled[int(featureIndex)])
+    if fIndex == 1:
+        return [True, fIndex, enabled]
+    elif fIndex == 0:
+        return [False, fIndex, enabled]
     conn.close()
 
 # Notify in console when bot is loaded and sets bot currently playing status, basically any commands entered here are run when the bot is loaded and connected to Discord's servers
@@ -348,8 +367,9 @@ async def registerServer(ctx):
     role = discord.utils.get(ctx.guild.roles, name='RomeBotAdmin')
     if role in ctx.author.roles:
         id = str(ctx.guild.id)
-        writeDB(id, 'registerServer', '1111111111111111111111')
-        readDB(id)
+#        writeDB(id, 'registerServer', '1111111111111111111111')
+        writeDB(id, '3', '1111111111111111111111')
+#        print(readDB(id, 3))
         await ctx.send('Server registered to database. If you were already registered, this has enabled everything again.')
     else:
         await ctx.send('Sorry, you don\'t appear to have the correct permissions to use that command. Ensure you have the role "RomeBotAdmin" if you are an administrator and want to toggle whether a function is enabled, please create a role titled "RomeBotAdmin" perms don\'t matter, and grant it to a user or yourself.')
