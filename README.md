@@ -1,14 +1,6 @@
-# RomeBot by Sidpatchy
-Get Started By Typing !help
+# RomeBot by Sidpatchy Unstable Testing Branch, just like me
+I highly recommend that you don't use this in any environment that requires stability, or any for that matter. Unless you are testing the bot out looking for bugs, I recommend that you don't use this version, ever.
 
-RomeBot is a basic chat bot I created it to bring some more fun to my Discord Server, and... who doesn't need the Glory of Rome in everything they do?
+To host this bot you must have discord.py, asyncio, and datetime (the one bundled with Python works just fine.) installed, may God help you if you do, I have done absolutely zero bug testing so far. Since this early version of v2.0.0 is probably extremely unstable, just like me, you should probably use the version I host or host your own using the most recent release. You can invite the current release version to your Discord server using this link: https://discord.bots.gg/bots/511050489928876052
 
-Now including 25% more glory in the same package! Nowhere else can you find so much glory packed into such a small package. Only 16  kilobytes! 
-
-Remember, Roma Invicta and Carthago Delanda Est!
-
-I have no plans for new features but I will add them as I see fit
-
-Written in Python using version 3.8(.0) using Discord.py
-
-To host this bot you must have discord.py, asyncio, and datetime (the one bundled with Python works just fine.) installed. Alternatively, you can invite it to your Discord server using this link: https://discord.bots.gg/bots/511050489928876052
+I should probably add that I'm not actually entirely unstable, just a little. You've gotta have some spice in your life.
