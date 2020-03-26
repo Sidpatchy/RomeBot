@@ -1,4 +1,5 @@
 These commands need to be added to the !featureControl command.
 
-!registerServer - Registers or resets the server in RomeBot's database
+!registerServer - Registers or resets the server in RomeBot's database. Chances are, you don't need to run this unless RomeBot tells you to.
 
+!updateServer - MIGHT eventually update the server's listing in the database
