@@ -8,6 +8,7 @@ import asyncio
 import datetime as DT                           # Imports datetime as DT so instead of typing 'datetime.datetime.now()' you type 'DT.datetime.now()' it saves time and looks less dumb than 'datetime.datetime.now()'
 from time import sleep                          # Imports sleep because time.sleep() doesn't work
 import os
+import sqlite3
 
 # Checks time that bot was started
 botStartTime = DT.datetime.now()
@@ -23,7 +24,38 @@ f.write(str(DT.datetime.now()))
 f.write('\n')
 f.close()
 
-# Handles what needs to be printed in the console
+# Defines variables used for SQLite
+conn = sqlite3.connect('RomeBot.db')
+c = conn.cursor()
+
+# Creates a table if one doesn't already exist
+c.execute("""CREATE TABLE IF NOT EXISTS servers (
+            serverID text,
+            test text,
+            info text,
+            joined text,
+            time text,
+            crucify text,
+            impale text,
+            stab text,
+            assassinate text,
+            carthago_delanda_est text,
+            hangme text,
+            flex text,
+            uptime text,
+            lastupdate text,
+            enslave text,
+            servers text,
+            poneacullei text,
+            jupiterhates text,
+            ides text,
+            brutussupporter text,
+            caesarnatalis text,
+            version text
+            )""")
+conn.close()
+
+# Handles what needs to be printed in the console and wrties that to the logs
 def consoleOutput(commandName, commandTime):    # Defines consoleOutput()
     startTime = commandTime                     # (laziness) passing startTime from the beginning of the command into the function
     timeToRun = DT.datetime.now() - startTime
@@ -47,6 +79,123 @@ def consoleOutput(commandName, commandTime):    # Defines consoleOutput()
     f.write('--------------------------\n')
     f.close()
 
+# Handles shit that needs to be written to the database
+def writeDB(serverID, commandName, enabled):
+    conn = sqlite3.connect('RomeBot.db')
+    c = conn.cursor()
+#    if commandName == 'registerServer':
+#        with conn:
+#            c.execute("INSERT INTO servers VALUES (?, '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1')", (serverID,))
+#        print('Registered to database!')
+    if commandName == 'testing':
+        with conn:
+            c.execute("""UPDATE servers SET testing = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'info':
+        with conn:
+            c.execute("""UPDATE servers SET info = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'joined':
+        with conn:
+            c.execute("""UPDATE servers SET joined = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'time':
+        with conn:
+            c.execute("""UPDATE servers SET time = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'crucify':
+        with conn:
+            c.execute("""UPDATE servers SET crucify = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'impale':
+        with conn:
+            c.execute("""UPDATE servers SET impale = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'stab':
+        with conn:
+            c.execute("""UPDATE servers SET stab = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'assassinate':
+        with conn:
+            c.execute("""UPDATE servers SET assassinate = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'carthago_delanda_est':
+        with conn:
+            c.execute("""UPDATE servers SET carthago_delanda_est = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'hangme':
+        with conn:
+            c.execute("""UPDATE servers SET hangme = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'flex':
+        with conn:
+            c.execute("""UPDATE servers SET flex = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'uptime':
+        with conn:
+            c.execute("""UPDATE servers SET uptime = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'lastupdate':
+        with conn:
+            c.execute("""UPDATE servers SET lastupdate = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'enslave':
+        with conn:
+            c.execute("""UPDATE servers SET enslave = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'servers':
+        with conn:
+            c.execute("""UPDATE servers SET servers = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'poneacullei':
+        with conn:
+            c.execute("""UPDATE servers SET poneacullei = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'jupiterhates':
+        with conn:
+            c.execute("""UPDATE servers SET jupiterhates = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'ides':
+        with conn:
+            c.execute("""UPDATE servers SET ides = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'brutussupporter':
+        with conn:
+            c.execute("""UPDATE servers SET brutussupporter = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'caesarnatalis':
+        with conn:
+            c.execute("""UPDATE servers SET caesarnatalis = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    elif commandName == 'version':
+        with conn:
+            c.execute("""UPDATE servers SET version = ?
+                        WHERE serverID = ?""",
+                        (enabled, serverID))
+    conn.commit()
+    print(c.fetchall())
+    conn.close()
+
 # Notify in console when bot is loaded and sets bot currently playing status, basically any commands entered here are run when the bot is loaded and connected to Discord's servers
 @bot.event
 async def on_ready():
@@ -58,6 +207,8 @@ async def on_ready():
     print('Done Loading!')                          # Prints 'Done Loading!' in console
     print('--------------------------')
 
+
+
     # Write to log file
     f = open('RomeBotLogs.txt', 'a')
     f.write('\nRomeBot connected! | ')
@@ -67,12 +218,17 @@ async def on_ready():
     f.write('\n')
     f.close()
 
+@bot.event
+async def on_guild_join(guild):
+    print(guild.id)
+
 # Test command
 @bot.command(pass_context=True)
 async def test(ctx):                             # Defines the command 'test' so to run this command you type '!test'
     startTime = DT.datetime.now()                # Stores the time the command was initiated at
     await ctx.send('Working!')                   # Types 'Working!' in discord channel where command was run
     consoleOutput('test', startTime)
+    print(ctx.guild.id)
 
 # Info command
 @bot.command(pass_context=True)
@@ -273,6 +429,49 @@ async def version(ctx):
     await ctx.send('RomeBot Version 1.2.0 | Released 2020-03-23')
     consoleOutput('version', startTime)
 
+@bot.command(pass_context=True)
+async def toggle(ctx):
+    startTime = DT.datetime.now()
+    role = discord.utils.get(ctx.guild.roles, name='RomeBotAdmin')
+    if role in ctx.author.roles:
+        await ctx.send('Updating my database! I will send another message when done.')
+
+    else:
+        await ctx.send('Sorry, you don\'t appear to have the correct permissions to use that command. Ensure you have the role "RomeBotAdmin" if you are an administrator and want to toggle whether a function is enabled, please create a role titled "RomeBotAdmin" perms don\'t matter, and grant it to a user or yourself.')
+
+@bot.event
+async def on_message(message):
+    startTime = DT.datetime.now()
+    await bot.process_commands(message)
+    channel = message.channel
+    guild = message.guild
+    #print(message)
+    if message.author == bot.user or message.author.id == 595452406439870464 or message.author.id == 657047322127237138:
+        return
+    role = discord.utils.get(guild.roles, name='RomeBotAdmin')
+    if role in message.author.roles:
+        print('47')
+    else:
+        await channel.send('Sorry, you don\'t appear to have the correct permissions to use that command. Ensure you have the role "RomeBotAdmin" if you are an administrator and want to toggle whether a function is enabled, please create a role titled "RomeBotAdmin" perms don\'t matter, and grant it to a user or yourself.')
+
+@bot.command(pass_context=True)
+async def registerServer(ctx):
+    startTime = DT.datetime.now()
+    role = discord.utils.get(ctx.guild.roles, name='RomeBotAdmin')
+    if role in ctx.author.roles:
+        id = str(ctx.guild.id)
+        print(id)
+#        writeDB(id, 'registerServer', '1')
+        conn = sqlite3.connect('RomeBot.db')
+        c = conn.cursor()
+        c.execute("INSERT INTO servers VALUES (?, '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1')", (id,))
+        print('Registered to database!')
+
+        print(c.fetchall())
+        conn.close()
+    else:
+        await ctx.send('Sorry, you don\'t appear to have the correct permissions to use that command. Ensure you have the role "RomeBotAdmin" if you are an administrator and want to toggle whether a function is enabled, please create a role titled "RomeBotAdmin" perms don\'t matter, and grant it to a user or yourself.')
+
 # Adds a help command that sends a message to the user rather than spamming the chat with a long message
 @bot.command(pass_context=True)
 async def help(ctx):
@@ -303,8 +502,9 @@ async def help(ctx):
     embed.add_field(name='!brutussupporter @user', value='Calls out a Brutus supporter\'s BS and calls for their ass kicking', inline=False)
     embed.add_field(name='!caesarnatalis', value='Lists how long it is until Julius Caesar\'s birthday. Since we don\'t know which day it was I calculate from July 7 at 12pm to get the midpoint between the 2 days.', inline=False)
     embed.add_field(name='!version', value='Gives the version number and release date being run', inline=False)
+    embed.add_field(name='!featureControl', value='Gives you information on how to toggle which commands and features are allowed used on your server. By default, everything is enabled. Running the command also registers your server to RomeBot\'s database of registered servers if you aren\'t already in it, chances are, you already are as most servers were added when RomeBot was. This, of course, excludes servers that were added before these controls were added.')
     await author.send(embed=embed)
     consoleOutput('help', startTime)
 
 # UNCOMMENT THE NEXT LINE IF YOU AREN'T COMPILING USING THE BATCH FILE
-#bot.run('INSERT_TOKEN')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+bot.run('')       # User defined bot token, get one here: https://discordapp.com/developers/applications/.     ensure you don't remove the apostprophes!
