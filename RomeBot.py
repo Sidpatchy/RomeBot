@@ -72,21 +72,23 @@ def writeDB(serverID, featureIndex, enabled):
         c.execute("INSERT OR IGNORE INTO servers VALUES ('{}', '{}')".format(serverID, enabled))
         conn.commit()
         print('Registered', serverID, 'to database!')
-    elif int(featureIndex) >= 3:
+    elif int(featureIndex) >= 0:
         DB = readDB(serverID, featureIndex)
-        posToEdit = int(2 + (19 - (DB[1] - 2)))
+        posToEdit = int(featureIndex + (22 - (2 * featureIndex)))
+        print('PosToEdit: ', posToEdit)
         regex = re.compile(r'[^\d.]+')
         #First parameter is the replacement, second parameter is your input string
         DB2 = regex.sub('', DB[2])
-        print(DB2)
+        print('DB2 1', DB2)
+        DB2 = list(DB2)
         if DB[0] == True:
-            updatePos = int(int(DB2) - (1 * (10 ^ posToEdit)))
+            DB2[posToEdit] = 0
         elif DB[0] == False:
-            updatePos = int(int(DB2) + 1 * (10 ^ posToEdit))
-        print(updatePos)
-        return
+            DB2[posToEdit] = 1
+        DB2 = regex.sub('', str(DB2))
+        print('DB2 2', DB2)
         c.execute("""UPDATE servers SET features = {}
-                    WHERE serverID = ?""".format(updatePos))
+                    WHERE serverID = {}""".format(str(DB2), serverID))
     conn.commit()
     conn.close()
 
@@ -367,8 +369,8 @@ async def registerServer(ctx):
     role = discord.utils.get(ctx.guild.roles, name='RomeBotAdmin')
     if role in ctx.author.roles:
         id = str(ctx.guild.id)
-#        writeDB(id, 'registerServer', '1111111111111111111111')
-        writeDB(id, '3', '1111111111111111111111')
+#        writeDB(id, 'registerServer', '110110111111111110111')
+        writeDB(id, 6, '111111111111111111111')
 #        print(readDB(id, 3))
         await ctx.send('Server registered to database. If you were already registered, this has enabled everything again.')
     else:
