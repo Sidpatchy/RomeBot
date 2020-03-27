@@ -32,7 +32,7 @@ c = conn.cursor()
 # Creates a table if one doesn't already exist
 c.execute("""CREATE TABLE IF NOT EXISTS servers (
             serverID text,
-            features text
+            features integer
             )""")
 conn.commit()
 conn.close()
@@ -67,28 +67,31 @@ def consoleOutput(commandName, commandTime):    # Defines consoleOutput()
 def writeDB(serverID, featureIndex, enabled):
     conn = sqlite3.connect('RomeBot.db')
     c = conn.cursor()
+    id = serverID
     if featureIndex == 'registerServer':
         c.execute("DELETE FROM servers WHERE serverID = {}".format(serverID))
         c.execute("INSERT OR IGNORE INTO servers VALUES ('{}', '{}')".format(serverID, enabled))
         conn.commit()
         print('Registered', serverID, 'to database!')
     elif int(featureIndex) >= 0:
-        DB = readDB(serverID, featureIndex)
-        posToEdit = int(featureIndex + (22 - (2 * featureIndex)))
-        print('PosToEdit: ', posToEdit)
         regex = re.compile(r'[^\d.]+')
+        featureIndex = int(regex.sub('', str(featureIndex)))
+        posToEdit = int(featureIndex + (22 - (2 * featureIndex)))
+        DB = readDB(id, posToEdit)
+        print('PosToEdit: ', posToEdit)
+        print('D FUCKING B', DB)
         #First parameter is the replacement, second parameter is your input string
         DB2 = regex.sub('', DB[2])
         print('DB2 1', DB2)
-        DB2 = list(DB2)
+        DB2 = list(str(DB2))
         if DB[0] == True:
             DB2[posToEdit] = 0
         elif DB[0] == False:
             DB2[posToEdit] = 1
-        DB2 = regex.sub('', str(DB2))
+        DB2 = ''.join(str(v) for v in DB2)
         print('DB2 2', DB2)
         c.execute("""UPDATE servers SET features = {}
-                    WHERE serverID = {}""".format(str(DB2), serverID))
+                    WHERE serverID = {}""".format(int(DB2), serverID))
     conn.commit()
     conn.close()
 
@@ -98,12 +101,14 @@ def readDB(serverID, featureIndex):
     c = conn.cursor()
     c.execute("SELECT features FROM servers WHERE serverID = '{}'".format(serverID))
     enabled = str(c.fetchall())
-#    print(enabled)
-#    print(enabled[featureIndex])
-    fIndex = int(enabled[int(featureIndex)])
-    if fIndex == 1:
+    print('en FUCKING abled', enabled)
+    print('featureFUCKING INDEX', featureIndex)
+    fIndex = enabled[int(featureIndex)]
+    print('f fucking index', fIndex)
+    if int(fIndex) == 1:
         return [True, fIndex, enabled]
-    elif fIndex == 0:
+    elif int(fIndex) == 0:
+        print('ass')
         return [False, fIndex, enabled]
     conn.close()
 
@@ -338,19 +343,11 @@ async def version(ctx):
     await ctx.send('RomeBot Version 1.2.0 | Released 2020-03-23')
     consoleOutput('version', startTime)
 
-@bot.command(pass_context=True)
-async def toggle(ctx):
-    startTime = DT.datetime.now()
-    role = discord.utils.get(ctx.guild.roles, name='RomeBotAdmin')
-    if role in ctx.author.roles:
-        await ctx.send('Updating my database! I will send another message when done.')
-
-    else:
-        await ctx.send('Sorry, you don\'t appear to have the correct permissions to use that command. Ensure you have the role "RomeBotAdmin" if you are an administrator and want to toggle whether a function is enabled, please create a role titled "RomeBotAdmin" perms don\'t matter, and grant it to a user or yourself.')
-
 @bot.event
 async def on_message(message):
     startTime = DT.datetime.now()
+    global msg
+    msg = message.content
     await bot.process_commands(message)
     channel = message.channel
     guild = message.guild
@@ -369,8 +366,7 @@ async def registerServer(ctx):
     role = discord.utils.get(ctx.guild.roles, name='RomeBotAdmin')
     if role in ctx.author.roles:
         id = str(ctx.guild.id)
-#        writeDB(id, 'registerServer', '110110111111111110111')
-        writeDB(id, 6, '111111111111111111111')
+        writeDB(id, 'registerServer', '1111111111111111111111')
 #        print(readDB(id, 3))
         await ctx.send('Server registered to database. If you were already registered, this has enabled everything again.')
     else:
@@ -382,6 +378,58 @@ async def registerServer(ctx):
 async def updateServer(ctx):
     startTime = DT.datetime.now()
 
+# Toggle command. Allows the user to toggle whether or not a command is enabled on their server
+@bot.command(pass_context=True)
+async def toggle(ctx):
+    startTime = DT.datetime.now()
+    role = discord.utils.get(ctx.guild.roles, name='RomeBotAdmin')
+    id = str(ctx.guild.id)
+    if role in ctx.author.roles:
+        if 'TEST' in msg.upper():
+            writeDB(id, 0, None)
+        elif 'INFO' in msg.upper():
+            writeDB(id, 1, None)
+        elif 'JOINED' in msg.upper():
+            writeDB(id, 2, None)
+        elif 'TIME' in msg.upper():
+            writeDB(id, 3, None)
+        elif 'CRUCIFY' in msg.upper():
+            writeDB(id, 4, None)
+        elif 'IMPALE' in msg.upper():
+            writeDB(id, 5, None)
+        elif 'STAB' in msg.upper():
+            writeDB(id, 6, None)
+        elif 'ASSASSINATE' in msg.upper():
+            writeDB(id, 7, None)
+        elif 'CARTHAGO_DELANDA_EST' in msg.upper():
+            writeDB(id, 8, None)
+        elif 'HANGME' in msg.upper():
+            writeDB(id, 9, None)
+        elif 'FLEX' in msg.upper():
+            writeDB(id, 10, None)
+        elif 'UPTIME' in msg.upper():
+            writeDB(id, 11, None)
+        elif 'LASTUPDATE' in msg.upper():
+            writeDB(id, 12, None)
+        elif 'ENSLAVE' in msg.upper():
+            writeDB(id, 13, None)
+        elif 'SERVERS' in msg.upper():
+            writeDB(id, 14, None)
+        elif 'PONEACULLEI' in msg.upper():
+            writeDB(id, 15, None)
+        elif 'JUPITERHATES' in msg.upper():
+            writeDB(id, 16, None)
+        elif 'IDES' in msg.upper():
+            writeDB(id, 17, None)
+        elif 'BRUTUSSUPPORTER' in msg.upper():
+            writeDB(id, 18, None)
+        elif 'CAESARNATALIS' in msg.upper():
+            writeDB(id, 19, None)
+        elif 'VERSION' in msg.upper():
+            writeDB(id, 20, None)
+    else:
+        await ctx.send('Sorry, you don\'t have the correct permissions to run that command. If you believe this is an error, please ensure you have the role "RomeBotAdmin" if the issue persists, please report a bug on my GitHub: https://github.com/Sidpatchy/RomeBot')
+    consoleOutput(msg + 'was toggled!', startTime)
 
 # Adds a help command that sends a message to the user rather than spamming the chat with a long message
 @bot.command(pass_context=True)
