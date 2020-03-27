@@ -3,3 +3,26 @@ These commands need to be added to the !featureControl command.
 !registerServer - Registers or resets the server in RomeBot's database. Chances are, you don't need to run this unless RomeBot tells you to.
 
 !updateServer - MIGHT eventually update the server's listing in the database
+
+feature index:
+test: 2 -                   1000000000000000000000
+info: 3 -                   0100000000000000000000
+joined: 4 -                 0010000000000000000000
+time: 5 -                   0001000000000000000000
+crucify: 6 -                0000100000000000000000
+impale: 7 -                 0000010000000000000000
+stab: 8 -                   0000001000000000000000
+assassinate: 9 -            0000000100000000000000
+carthago_delanda_est: 10 -  0000000010000000000000
+hangme: 11 -                0000000001000000000000
+flex: 12 -                  0000000000100000000000
+uptime: 13 -                0000000000010000000000
+lastupdate: 14 -            0000000000001000000000
+enslave: 15 -               0000000000000100000000
+servers: 16 -               0000000000000010000000
+poneacullei: 17 -           0000000000000001000000
+jupiterhates: 18 -          0000000000000000100000
+ides: 19 -                  0000000000000000010000
+brutussupporter: 20 -       0000000000000000001000
+caesarnatalis: 21 -         0000000000000000000100
+version: 22 -               0000000000000000000010
