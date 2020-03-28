@@ -1,4 +1,4 @@
-# RomeBot by Sidpatchy Unstable Testing Branch, just like me
+# RomeBot by Sidpatchy | Unstable Testing Branch
 I highly recommend that you don't use this in any environment that requires stability, or any for that matter. Unless you are testing the bot out looking for bugs, I recommend that you don't use this version, ever.
 
 ALSO, I am fully aware that the way I am inserting data into the SQL code is super dangerous. I don't care in this case, though I probably should, since RomeBot never directly takes any user input. Everything that RomeBot will ever write to the database is and always will be predefined.
