@@ -8,3 +8,5 @@ To host this bot you must have discord.py, asyncio, and datetime (the one bundle
 I should probably add that I'm not actually entirely unstable, just a little. You've gotta have some spice in your life.
 
 Like really, don't use this.
+
+I hate the name of this branch. It will not be called changes! next time.
