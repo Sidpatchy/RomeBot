@@ -32,7 +32,7 @@ c = conn.cursor()
 # Creates a table if one doesn't already exist
 c.execute("""CREATE TABLE IF NOT EXISTS servers (
             serverID text,
-            features integer
+            features blob
             )""")
 conn.commit()
 conn.close()
@@ -70,7 +70,7 @@ def writeDB(serverID, featureIndex, enabled):
     id = serverID
     if featureIndex == 'registerServer':
         c.execute("DELETE FROM servers WHERE serverID = {}".format(serverID))
-        c.execute("INSERT OR IGNORE INTO servers VALUES ('{}', '{}')".format(serverID, enabled))
+        c.execute("INSERT OR IGNORE INTO servers VALUES ('{}', '{}')".format(serverID, str(enabled)))
         conn.commit()
         print('Registered', serverID, 'to database!')
     elif int(featureIndex) >= 0:
@@ -85,13 +85,13 @@ def writeDB(serverID, featureIndex, enabled):
         print('DB2 1', DB2)
         DB2 = list(str(DB2))
         if DB[0] == True:
-            DB2[posToEdit] = 0
+            DB2[posToEdit] = 'a'
         elif DB[0] == False:
-            DB2[posToEdit] = 1
+            DB2[posToEdit] = 'b'
         DB2 = ''.join(str(v) for v in DB2)
         print('DB2 2', DB2)
         c.execute("""UPDATE servers SET features = {}
-                    WHERE serverID = {}""".format(int(DB2), serverID))
+                    WHERE serverID = {}""".format(str(DB2), serverID))
     conn.commit()
     conn.close()
 
@@ -105,9 +105,9 @@ def readDB(serverID, featureIndex):
     print('featureFUCKING INDEX', featureIndex)
     fIndex = enabled[int(featureIndex)]
     print('f fucking index', fIndex)
-    if int(fIndex) == 1:
+    if str(fIndex) == 'b':
         return [True, fIndex, enabled]
-    elif int(fIndex) == 0:
+    elif str(fIndex) == 'a':
         print('ass')
         return [False, fIndex, enabled]
     conn.close()
@@ -315,7 +315,7 @@ async def ides(ctx):
 @bot.command(pass_context=True)
 async def brutussupporter(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('Guess what! That\'s right! {} is a dick, ass kickings can be sent directly to their house'.format(user.display_name))
+    await ctx.send('Guess what! That\'s right! {} is a dick, ass kickings can be sent directly to their email'.format(user.display_name))
     await ctx.send('https://i.imgur.com/WIa1uIC.jpg')
     consoleOutput('brutussupporter', startTime)
 
@@ -366,7 +366,7 @@ async def registerServer(ctx):
     role = discord.utils.get(ctx.guild.roles, name='RomeBotAdmin')
     if role in ctx.author.roles:
         id = str(ctx.guild.id)
-        writeDB(id, 'registerServer', '1111111111111111111111')
+        writeDB(id, 'registerServer', 'bbbbbbbbbbbbbbbbbbbbbb')
 #        print(readDB(id, 3))
         await ctx.send('Server registered to database. If you were already registered, this has enabled everything again.')
     else:
