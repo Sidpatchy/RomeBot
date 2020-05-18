@@ -1,14 +1,6 @@
 # RomeBot by Sidpatchy
-Get Started By Typing !help
+This branch will contain a nearly complete rewrite of RomeBot. I have learned a lot since I started out with RomeBot and it could be made more organized than it currently is. 
 
-RomeBot is a basic chat bot I created it to bring some more fun to my Discord Server, and... who doesn't need the Glory of Rome in everything they do?
+Libraries are likely to remain the same, however, I will be using sLOUT (Sidpatchy's Library of Useful Things) to compliment RomeBot v2
 
-Now including 25% more glory in the same package! Nowhere else can you find so much glory packed into such a small package. Only 16  kilobytes! 
-
-Remember, Roma Invicta and Carthago Delanda Est!
-
-I have no plans for new features but I will add them as I see fit
-
-Written in Python using version 3.8(.0) using Discord.py
-
-To host this bot you must have discord.py, asyncio, and datetime (the one bundled with Python works just fine.) installed. Alternatively, you can invite it to your Discord server using this link: https://discord.bots.gg/bots/511050489928876052
+Another key thing that I need to do with this version, mainly for readablity and future use, is to comment on the code. Right now I can *usually* figure out what is happening but others may not have the same luck.
