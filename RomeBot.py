@@ -8,6 +8,7 @@ import asyncio
 import datetime as DT                           # Imports datetime as DT so instead of typing 'datetime.datetime.now()' you type 'DT.datetime.now()' it saves time and looks less dumb than 'datetime.datetime.now()'
 from time import sleep                          # Imports sleep because time.sleep() doesn't work
 import os
+import sLOUT as lout
 
 # Checks time that bot was started
 botStartTime = DT.datetime.now()
@@ -16,18 +17,28 @@ botStartTime = DT.datetime.now()
 bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'test'
 bot.remove_command('help')                  # Removes the default help command
 
-# Creates a log file if it doesn't exist and then writes to the log file, whether or not it just created it, what time the bot was started.
-f = open('RomeBotLogs.txt', 'a')
-f.write('\nRomeBot ready! | ')
-f.write(str(DT.datetime.now()))
-f.write('\n')
-f.close()
+# Creates a log file if it doesn't already exist, and then writes to the file.
+lout.writeFile('RomeBotLogs.txt', '\nRomeBot Initialized Successfully!', True)
+
+# Things to run when the bot successfully connects to Discord
+@bot.event
+async def on_ready():
+    await bot.change_presence(activity=discord.Game(name='RomeBot v2-a1 | !help'))
+    lout.log(botStartTime, None, lout.readConfig('romebot.bot', 'botName'), True)
+
+# Info Command
+@bot.command(pass_context=True)
+async def info(ctx):
+    startTime = DT.datetime.now()                                                                                                                                                   # Get the time the command was initiated at
+    await ctx.send('RomeBot by Sidpatchy. You can find my GitHub here: https://github.com/Sidpatchy/RomeBot')                                                                       # Send a message in the channel the command was run in
+    lout.log(startTime, 'info')                                                                                                                                                     # Write to log
 
 # this will be changed
+@bot.command(pass_context=True)
 async def version(ctx):
     startTime = DT.datetime.now()
-    await ctx.send('RomeBot Version v2-a1 | Released 2020-05-18')
-    consoleOutput('version', startTime)
+    await ctx.send('RomeBot Version v2-a2 | Released 2020-05-20')
+    lout.log(startTime, 'version')
 
 # Adds a help command that sends a message to the user rather than spamming the chat with a long message
 @bot.command(pass_context=True)
@@ -38,9 +49,9 @@ async def help(ctx):
         color = discord.Color.red()
     )
     embed.set_author(name='Help')
-    embed.add_field(name='MOST COMMANDS ARE NOT IN THIS VERSION. The only available commands are shown.')                                                                            # Will be removed in v2 release
+    embed.add_field(value='This is an early version of RomeBot v2. Please note that some features may not work as expected.', name='RomeBot v2-a2', inline=False)                    # Will be removed in v2 release
 #    embed.add_field(name='!test', value='Responds \'Working!\'', inline=False)                                                                                                      # Remove?
-#    embed.add_field(name='!info', value='Gives some information about the bot', inline=False)                                                                                       # No significant changes are planned
+    embed.add_field(name='!info', value='Gives some information about the bot', inline=False)                                                                                       # No significant changes are planned
 #    embed.add_field(name='!joined @user', value='States when a user joined the server', inline=False)                                                                               # Visual changes
 #    embed.add_field(name='!time', value='States what time it is on the server that the bot is hosted on', inline=False)                                                             # Remove?
 #    embed.add_field(name='!crucify @user', value='Crucifies a mentioned user', inline=False)                                                                                        # No significant changes are planned
@@ -61,7 +72,7 @@ async def help(ctx):
 #    embed.add_field(name='!caesarnatalis', value='Lists how long it is until Julius Caesar\'s birthday. Uses July 7th at 12pm (CST).', inline=False)                                # Date will likely be changed
     embed.add_field(name='!version', value='Gives the version (and its release date) being run', inline=False)                                                                      # Visual changes are possible
     await author.send(embed=embed)
-    consoleOutput('help', startTime)
+    lout.log(startTime, 'help')
 
-# UNCOMMENT THE NEXT LINE IF YOU AREN'T COMPILING USING THE BATCH FILE (chances are, you aren't)
-#bot.run('INSERT_TOKEN')       # User defined bot token, get one here: https://discordapp.com/developers/applications/
+# Remind me to install windows and then update compiler.bat
+bot.run(lout.fetchToken('romebot.bot'))       # User defined bot token, get one here: https://discordapp.com/developers/applications/, then place it inside token.txt
