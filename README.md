@@ -5,4 +5,4 @@ Libraries are likely to remain the same, however, I will be using sLOUT (Sidpatc
 
 Another key thing that I need to do with this version, mainly for readablity and future use, is to comment on the code. Right now I can *usually* figure out what is happening but others may not have the same luck.
 
-I think I have another goal; compiling should be something that makes the bot customizable... even after the bot is compiled. Want to change the token? Now you can. Before you would have had to recompile it into an EXE (which is still dumb).
+I think I have another goal; compiling should be something that makes the bot customizable... even after the bot is compiled. Want to change the token? Now you can. Before you would have had to recompile it into an EXE (which is still dumb, like genuinely, I can't overstate how pointless compiling Python is).
