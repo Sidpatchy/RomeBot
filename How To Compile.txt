@@ -6,14 +6,11 @@ Step 1:
 To get a bot token head over to https://discordapp.com/developers/applications and create a bot if you haven't done so already.
 
 Step 2:
-Open the file titled compiler.bat. This will update pip, for any reason, if you don't want this, please do remove the 5th line from the batch file.
+Open the file titled compiler.bat. This will update pip, for any reason, if you don't want this, please remove the 6th line from the batch file.
 It will immediately begin to install the libraries RomeBot needs to run, as well as the library we will use to compile RomeBot. This can take some time, be patient.
 
 Step 3:
-The file will ask for a bot token, paste the exact token in by right-clicking or hitting Ctrl + V
-
-Step 4:
-Wait for the script to finish and then open RomeBot.exe. 
+Wait for the script to finish and then place your config.yml in the same folder as RomeBot.exe, finally, double click it and it will start up!. 
 Congratulations! You successfully compiled RomeBot
 
 Windows (manual):
