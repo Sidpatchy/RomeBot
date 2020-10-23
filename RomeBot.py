@@ -13,12 +13,14 @@ import sLOUT as lout
 # Checks time that bot was started
 botStartTime = DT.datetime.now()
 
+# Store the bot version and release date
+ver = ['v2-RC1', '2020-10-22']
 
 # Define a config file for use in the log commands. 
 config = 'config.yml'
 
 # Prefix to be entered before commmands. Ex. !test
-bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'test'
+bot = commands.Bot(command_prefix='!')      # In this case the prefix is '!' so before typing a command you type '!' and then 'info'
 bot.remove_command('help')                  # Removes the default help command
 
 # Creates a log file if it doesn't already exist, and then writes to the file.
@@ -27,7 +29,7 @@ lout.writeFile('RomeBotLogs.txt', '\nRomeBot Initialized Successfully!', True)
 # Things to run when the bot successfully connects to Discord
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game(name='RomeBot v2-RC1 | !help'))
+    await bot.change_presence(activity=discord.Game(name='RomeBot {} | !help'.format(ver[0])))
     lout.log(config, botStartTime, None, lout.readConfig(config, 'botName'), True)
 
 # Info Command
@@ -68,9 +70,9 @@ async def version(ctx):
     embed = discord.Embed(
         color = discord.Color.red()
     )
-    embed.add_field(name='RomeBot v2-RC1', value='Released 2020-10-22')
+    embed.add_field(name='RomeBot {}'.format(ver[0]), value='Released {}'.format(ver[1]))
     await ctx.send(embed=embed)
-    lout.log(config, startTime, 'version (v2-RC1)')
+    lout.log(config, startTime, 'version ({})'.format(ver[0]))
 
 # !time, states the server time
 @bot.command(pass_context=True)
@@ -83,10 +85,8 @@ async def time(ctx):
 @bot.command(pass_context=True)
 async def carthago_delanda_est(ctx):
     startTime = DT.datetime.now()
-    await ctx.send('Ceterum autem censeo Carthaginem esse delendam', file=discord.File('images/delanda.jpg'))    # Because old RomeBot was cringy
+    await ctx.send('Ceterum autem censeo Carthaginem esse delendam', file=discord.File('images/delanda.jpg'))
     lout.log(config, startTime, 'carthago_delanda_est')
-
-# isplaying: Removed due to changes in Discord TOS.
 
 # Impale, impales a mentioned @user
 @bot.command(pass_context=True)
@@ -125,7 +125,7 @@ async def uptime(ctx):
 @bot.command(pass_context=True)
 async def enslave(ctx, user: discord.Member):
     startTime = DT.datetime.now()
-    await ctx.send('I THINK I SMELL CASH MONEY BABY!!! {} HAS BEEN ENSLAVED!'.format(user.display_name), file=discord.File('images/enslave.jpg'))
+    await ctx.send('I THINK I SMELL CASH MONEY BABY!!! {} HAS BEEN ENSLAVED!'.format((user.display_name).upper()), file=discord.File('images/enslave.jpg'))
     lout.log(config, startTime, 'enslave')
 
 # Servers, lists the number of servers the bot is in
@@ -181,26 +181,21 @@ async def help(ctx):
         color = discord.Color.red()
     )
     embed.set_author(name='Help')
-    embed.add_field(value='This is an early version of RomeBot v2. Please note that some features may not work as expected.', name='RomeBot v2-RC1', inline=False)                  # Will be removed with v2 release
-#    embed.add_field(name='!test', value='Responds \'Working!\'', inline=False)                                                                                                     # Removed, use !servers or !uptime instead.
-    embed.add_field(name='!info', value='Get help, an invite link, and a link to RomeBot GitHub', inline=False)                                                                     # Replaced with an embeded message which contains actual information of the bot and a way to invite it to the server
-    embed.add_field(name='!joined @user', value='States when a user joined the server', inline=False)                                                                               # Replaced with an embed
-    embed.add_field(name='!time', value='States what time it is on the server that the bot is hosted on', inline=False)                                                             # Very slight visual changes
-    embed.add_field(name='!crucify @user', value='Crucifies a mentioned user', inline=False)                                                                                        # Made command send one message and switched to sending images from the server, rather than linking Imgur
-    embed.add_field(name='!impale @user', value='Impales a mentioned user', inline=False)                                                                                           # Made command send one message and switched to sending images from the server, rather than linking Imgur
-    embed.add_field(name='!stab @user', value='Stabs a mentioned user', inline=False)                                                                                               # Made command send one message and switched to sending images from the server, rather than linking Imgur
-    embed.add_field(name='!assassinate @user', value='Has a user assassinated with the least offensive image possible', inline=False)                                               # Made command send one message and switched to sending images from the server, rather than linking Imgur
-    embed.add_field(name='!carthago_delanda_est', value='Rants in (bad) Latin about how CARTHAGE MUST BE DESTROYED!!!', inline=False)                                               # Made command send one message and switched to sending images from the server, rather than linking Imgur. Also made it less cringy
-#    embed.add_field(name='!flex', value='The bot flexes on how badly it is written and advertises it\'s GitHub', inline=False)                                                     # Removed. Replaced by the info command.
-    embed.add_field(name='!uptime', value='RomeBot reports how long it has gone without crashing, previously, this number has been above 30 days!', inline=False)                   # Replaced with an embed
-    embed.add_field(name='!enslave @user', value='Enslaves a mentioned user for the betterment of the Rome', inline=False)                                                          # Made command send one message and switched to sending images from the server, rather than linking Imgur. Also changed the message text.
-    embed.add_field(name='!servers', value='RomeBot states how many servers it is a member of', inline=False)                                                                       # Replaced with an embed
-    embed.add_field(name='!sack @user', value='Ponea cullei, punishment of the sack. Sacks a mentioned user.', inline=False)                                                        # Made command send one message and switched to sending images from the server, rather than linking Imgur.
-    embed.add_field(name='!jupiterhates @user', value='Jupiter strikes down a mentioned user', inline=False)                                                                        # Made significantly less graphic to appeal to more Discord bot lists.
-#    embed.add_field(name='!ides', value='Cries about the sad thing it was just reminded of', inline=False)                                                                         # Removed
-#    embed.add_field(name='!brutussupporter @user', value='Calls out a Brutus supporter\'s BS and calls for their ass kicking', inline=False)                                       # Removed
-    embed.add_field(name='!caesarnatalis', value='Lists how long it is until Julius Caesar\'s birthday. Uses July 7th at 12pm (CST).', inline=False)                                # I don't feel like checking this one right now, if I had to guess I didn't change anything
-    embed.add_field(name='!version', value='Gives the version (and its release date) being run', inline=False)                                                                      # Replaced with an embed.
+    embed.add_field(name='!info', value='Get help, an invite link, and a link to RomeBot GitHub', inline=False)
+    embed.add_field(name='!joined @user', value='States when a user joined the server', inline=False)
+    embed.add_field(name='!time', value='States what time it is on the server that the bot is hosted on', inline=False)
+    embed.add_field(name='!crucify @user', value='Crucifies a mentioned user', inline=False)
+    embed.add_field(name='!impale @user', value='Impales a mentioned user', inline=False)
+    embed.add_field(name='!stab @user', value='Stabs a mentioned user', inline=False)
+    embed.add_field(name='!assassinate @user', value='Has a user assassinated with the least offensive image possible', inline=False)
+    embed.add_field(name='!carthago_delanda_est', value='Rants in (bad) Latin about how CARTHAGE MUST BE DESTROYED!!!', inline=False)
+    embed.add_field(name='!uptime', value='RomeBot reports how long it has gone without crashing, previously, this number has been above 30 days!', inline=False)
+    embed.add_field(name='!enslave @user', value='Enslaves a mentioned user for the betterment of the Rome', inline=False)
+    embed.add_field(name='!servers', value='RomeBot states how many servers it is a member of', inline=False)
+    embed.add_field(name='!sack @user', value='Ponea cullei, punishment of the sack. Sacks a mentioned user.', inline=False)
+    embed.add_field(name='!jupiterhates @user', value='Jupiter strikes down a mentioned user', inline=False)
+    embed.add_field(name='!birthday', value='Lists how long it is until Julius Caesar\'s birthday. Uses July 7th at 12pm (CST).', inline=False)
+    embed.add_field(name='!version', value='Gives the version (and its release date) being run', inline=False)
     await author.send(embed=embed)
     lout.log(config, startTime, 'help')
 

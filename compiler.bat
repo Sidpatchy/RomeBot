@@ -9,6 +9,8 @@ pip install pyinstaller
 pip install asyncio
 pip install discord.py
 
+cd bot
+
 pyinstaller -F RomeBot.py
 
 cd dist
