@@ -1,4 +1,7 @@
 # RomeBot by Sidpatchy
+
+**This branch is defunct, it WILL NOT be updated unless major security issues are located. Please use the master branch instead.**
+
 Get Started By Typing !help
 
 RomeBot is a basic chat bot I created it to bring some more fun to my Discord Server, and... who doesn't need the Glory of Rome in everything they do?
