@@ -1,4 +1,7 @@
 # RomeBot by Sidpatchy | Unstable Testing Branch
+
+**This branch is now defunct. The features of it may eventually be ported over to production RomeBot, however, for now, this project is abandoned.**
+
 I highly recommend that you don't use this in any environment that requires stability, or any for that matter. Unless you are testing the bot out looking for bugs, I recommend that you don't use this version, ever.
 
 ALSO, I am fully aware that the way I am inserting data into the SQL code is super dangerous. I don't care in this case, though I probably should, since RomeBot never directly takes any user input. Everything that RomeBot will ever write to the database is and always will be predefined.
