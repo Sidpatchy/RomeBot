@@ -1,4 +1,4 @@
-# sLOUT by Sidpatchy v0.1-a10
+# sLOUT by Sidpatchy v0.1
 # This was originally intended to be used in a (currently) unreleased discord bot maker. However, I have slowly built more and more functions into it. Now it is integrated in many of my projects.
 # If you experience any issues, please open an issue on the GitHub: https://github.com/Sidpatchy/sLOUT
 
@@ -9,7 +9,7 @@ import glob
 from time import sleep
 import yaml
 
-version = 'v0.1-a10'
+version = 'v0.1'
 
 # writeFile() writes a string to the specified file
 # Usage:
@@ -95,15 +95,6 @@ def writePy(file, string, time=False):
         print('ERROR: Failed to read file. Make sure your user has permission to write to the file \'bots/{}.py\'. If you have the correct permissions, please open an issue here: https://github.com/Sidpatchy/sLOUT'.format(file))
         writeFile('sLOUT-error.txt', 'ERROR: Failed to read file. Make sure your user has permission to write to the file \'bots/{}.py\'. If you have the correct permissions, please open an issue here: https://github.com/Sidpatchy/sLOUT'.format(file), True)
         sleep(5)
-
-# fetchBots() returns all python files in the directory bots/
-def fetchBots():
-    return glob.glob('bots/*.py')
-
-# listBots() lists bots returned by fetchBots()
-def listBots():
-    bots = fetchBots()
-    print("\n".join(bots))
 
 # log()
 # Usage:
