@@ -29,7 +29,7 @@ lout.writeFile('RomeBotLogs.txt', '\nRomeBot Initialized Successfully!', True)
 # Things to run when the bot successfully connects to Discord
 @bot.event
 async def on_ready():
-    await bot.change_presence(activity=discord.Game(name='RomeBot {} | !help'.format(ver[0])))
+    await bot.change_presence(activity=discord.Game(name='Salting Carthage | !help'))
     lout.log(config, botStartTime, None, lout.readConfig(config, 'botName'), True)
 
 # Info Command
