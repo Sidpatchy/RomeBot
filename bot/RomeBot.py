@@ -14,7 +14,7 @@ import sLOUT as lout
 botStartTime = DT.datetime.now()
 
 # Store the bot version and release date
-ver = ['v2-RC1', '2020-10-22']
+ver = ['v2.0.2', '2020-12-02']
 
 # Define a config file for use in the log commands. 
 config = 'config.yml'
@@ -30,7 +30,7 @@ lout.writeFile('RomeBotLogs.txt', '\nRomeBot Initialized Successfully!', True)
 @bot.event
 async def on_ready():
     await bot.change_presence(activity=discord.Game(name='Salting Carthage | !help'))
-    lout.log(config, botStartTime, None, lout.readConfig(config, 'botName'), True)
+    lout.log(config, botStartTime, None, None, True)
 
 # Info Command
 @bot.command(pass_context=True)
