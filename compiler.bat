@@ -11,7 +11,7 @@ pip install discord.py
 
 cd bot
 
-pyinstaller -F src\RomeBot.py
+pyinstaller -F bot\RomeBot.py
 
 cd dist
 
