@@ -1,6 +1,6 @@
 # RomeBot by Sidpatchy
 
-**This branch is defunct, it WILL NOT be updated unless major security issues are located. Please use the master branch instead.**
+**This branch is defunct, it WILL NOT be updated. Please use the master branch instead.**
 
 Get Started By Typing !help
 
