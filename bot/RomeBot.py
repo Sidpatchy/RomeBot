@@ -14,7 +14,7 @@ import sLOUT as lout
 botStartTime = DT.datetime.now()
 
 # Store the bot version and release date
-ver = ['v2.0.3', '2020-12-03']
+ver = ['v2.1a', '2020-12-18']
 
 # Define a config file for use in the log commands. 
 config = 'config.yml'
@@ -172,11 +172,57 @@ async def birthday(ctx):
     await ctx.send(embed=embed)
     lout.log(config, startTime, 'birthday')
 
+# Polling function
+@bot.command(pass_context=True)
+async def poll(ctx):
+    startTime = DT.datetime.now()
+
+    # Create a list of the emoji to be used in the message and reactions
+    emoji = ['1️⃣', '2️⃣', '3️⃣', '4️⃣', '5️⃣', '6️⃣', '7️⃣', '8️⃣', '9️⃣', '🔟']
+
+    # Store the contents of the message in a variable and remove the command
+    msg = ctx.message.content
+    msg = msg.replace('!poll ', '')
+
+    # Split the message into a list
+    data = msg.split(",")
+
+    query = data[0]
+    data.pop(0)
+
+    # Create the embed and add fields to the embed
+    embed = discord.Embed(
+        color = discord.Color.red()
+    )
+    embed.add_field(name='{} asks:'.format(ctx.author.display_name), value='{}'.format(query), inline=False)
+
+    if len(data) <= 1:
+        embed.set_footer(text='React to this message with 👍 or 👎 to vote')
+    else:
+        for i in range(len(data)):
+            embed.add_field(name=emoji[i], value=data[i], inline=True)
+        embed.set_footer(text='React to this message with the corresponding emoji to vote')
+
+    # Send the message and store its context in message
+    message = await ctx.send(embed=embed)
+
+    # Add reactions
+    if len(data) <= 1:
+        await message.add_reaction('<👍>')
+        await message.add_reaction('<👎>')
+    else:
+        for i in range(len(data)):
+            await message.add_reaction('<{}>'.format(emoji[i]))
+
+    await ctx.message.add_reaction('<✅>')
+    lout.log(config, startTime, 'poll')
+
 # Adds a help command that sends a message to the user rather than spamming the chat with a long message
 @bot.command(pass_context=True)
 async def help(ctx):
     startTime = DT.datetime.now()
     author = ctx.message.author
+    
     embed = discord.Embed(
         color = discord.Color.red()
     )
@@ -196,6 +242,8 @@ async def help(ctx):
     embed.add_field(name='!jupiterhates @user', value='Jupiter strikes down a mentioned user', inline=False)
     embed.add_field(name='!birthday', value='Lists how long it is until Julius Caesar\'s birthday. Uses July 7th at 12pm (CST).', inline=False)
     embed.add_field(name='!version', value='Gives the version (and its release date) being run', inline=False)
+    embed.add_field(name='!poll <question>, <query>...', value='Creates a poll, for more info run "!help poll"')
+    
     await author.send(embed=embed)
     lout.log(config, startTime, 'help')
 
