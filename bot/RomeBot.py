@@ -242,7 +242,7 @@ async def help(ctx):
     embed.add_field(name='!jupiterhates @user', value='Jupiter strikes down a mentioned user', inline=False)
     embed.add_field(name='!birthday', value='Lists how long it is until Julius Caesar\'s birthday. Uses July 7th at 12pm (CST).', inline=False)
     embed.add_field(name='!version', value='Gives the version (and its release date) being run', inline=False)
-    embed.add_field(name='!poll <question>, <query>...', value='Creates a poll, for more info run "!help poll"')
+    embed.add_field(name='!poll <question>, <queries>...', value='Creates a poll, for more info run "!help poll"')
     
     await author.send(embed=embed)
     lout.log(config, startTime, 'help')
