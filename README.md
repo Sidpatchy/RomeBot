@@ -1,5 +1,5 @@
 # RomeBot by Sidpatchy
-> Why does this branch exist?
+> Why switch to java?
 
 Discord.py is no longer being developed, as a result, RomeBot will no longer be developed using Discord.py.
 
