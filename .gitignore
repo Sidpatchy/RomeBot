@@ -1,0 +1,21 @@
+# Compiled source #
+*.class
+out/
+build/
+
+# Eclipse files #
+.settings
+.classpath
+.project
+
+# ItelliJ files #
+.idea/
+/shelf/
+/workspace.xml
+
+# Target jars #
+target
+
+# Gradle Files #
+.gradle/
+gradle/

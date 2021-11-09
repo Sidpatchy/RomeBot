@@ -1,0 +1,85 @@
+# ----------------------------------------------
+# |              RomeBot v3.0.0                |
+# |           Commands Config file             |
+# ----------------------------------------------
+# Allows for changing how the help command displays commands.
+# Additionally allows for changing command names during runtime.
+
+# ----------------- INFORMATIONAL COMMANDS ----------------
+informationalCommands:
+  info:
+    name: info
+    usage: /info
+    help: Get help, an invite link, and a link to RomeBot's GitHub
+
+  joined:
+    name: joined
+    usage: "/joined <optional: @user>"
+    help: Reports when a user joined the server
+
+  servers:
+    name: servers
+    usage: /servers
+    help: Reports how many servers RomeBot is in
+
+  time:
+    name: time
+    usage: /time
+    help: Returns the current time
+
+  uptime:
+    name: uptime
+    usage: /uptime
+    help: "Reports how long the bot has gone without crashing (record: 125 days)"
+
+  version:
+    name: version
+    usage: /version
+    help: Gives info on the current version of RomeBot
+
+# -------------------- REGULAR COMMANDS -------------------
+regularCommands:
+  assassinate:
+    name: assassinate
+    usage: "/assassinate <optional: @user>"
+    help: Has a mentioned user assassinated
+
+  birthday:
+    name: birthday
+    usage: /birthday
+    help: Returns how much longer we must wait for Julius Caesar's birthday
+
+  carthago_delanda_est:
+    name: carthago-delanda-est
+    usage: /carthago-delanda-est
+    help: Based salting of Carthage
+
+  crucify:
+    name: crucify
+    usage: "/crucify <optional: @user>"
+    help: Crucifies a mentioned user
+
+  enslave:
+    name: enslave
+    usage: "/enslave <optional: @user>"
+    help: Enslaves a user for the glory of Rome!
+
+  impale:
+    name: impale
+    usage: "/impale <optional: @user>"
+    help: Impales a mentioned user
+
+  jupiterhates:
+    name: jupiterhates
+    usage: "/jupiterhates <optional: @user>"
+    help: Strikes down a mentioned user
+
+  sack:
+    name: sack
+    usage: "/sack <optional: @user>"
+    help: "Ponea cullei, punishment of the sack; Sacks a mentioned user."
+
+  stab:
+    name: stab
+    usage: "/stab <optional: @user>"
+    help: Stabs a mentioned user

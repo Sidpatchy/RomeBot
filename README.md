@@ -1,14 +1,16 @@
 # RomeBot by Sidpatchy
-Get Started By Typing !help
+> Why does this branch exist?
 
-RomeBot is a basic chat bot I created it to bring some more fun to my Discord Server, and... who doesn't need the Glory of Rome in everything they do?
+Discord.py is no longer being developed, as a result, RomeBot will no longer be developed using Discord.py.
 
-Now including 36% more glory in the same package! Nowhere else can you find so much glory packed into such a small package. Only 471.5 kilobytes!
+> What is changing?
 
-Remember, Roma Invicta and Carthago Delanda Est!
+RomeBot will be migrating to Javacord.
 
-I have no plans for new features but I will add them as I see fit
+There are some minor tweaks to how things are formatted, but the biggest change is the removal of "old fashioned" commands in favour of slash commands. I am building the bot in a way that adding "old fashioned" commands would be relatively easy, but as it stands, I see no real reason to put development time into something that is being deprecated by Discord.
 
-Written in Python using version 3.8.x using Discord.py; RomeBot always uses the most recent version of Python.
+Additionally, new releases of RomeBot will be licensed under the GPLv3.
 
-To host this bot you must have discord.py, asyncio, and PyYAML installed. Alternatively, you can invite it to your Discord server using this link: https://discord.bots.gg/bots/511050489928876052
+> What's taking so long? Why aren't you commiting to the repo periodically like normal?
+
+I've been quite busy with work as of late and have't had the time nor motivation to develop RomeBot. Additionally, it seems every time I touch it, I end up rewriting large amounts of what I *have* done because I found some better way to achieve what I wanted. I have a minimally working version of the bot as it stands, however, the bot isn't up to the standard I hold quite yet.
