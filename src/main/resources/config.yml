@@ -1,0 +1,16 @@
+# ----------------------------------------------
+# |              RomeBot v3.0.0                |
+# |                Config file                 |
+# ----------------------------------------------
+
+# ----------------- MAIN CONFIG ----------------
+# This section contains values that are needed for the bot's primary function
+
+# Discord bot token, get one at https://discord.com/developers/applications
+token:
+
+# Name of bot to be used in logs and
+botName: RomeBot
+
+# URL of the YouTube video RomeBot claims to be streaming
+video_url: https://www.youtube.com/watch?v=AeZRYhLDLeU
