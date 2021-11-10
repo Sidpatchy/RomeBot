@@ -36,6 +36,8 @@ public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void main(String[] args) throws IOException {
+        logger.info("RomeBot loading...");
+
         // Load config file if it doesn't exist
         String configFile = "config.yml";
         ResourceLoader loader = new ResourceLoader();
@@ -53,12 +55,15 @@ public class Main {
         if (api == null) {
             System.exit(0);
         }
+        else {
+            logger.info("Successfully logged in to Discord on shard " + current_shard + " with a total shard count of " + total_shards);
+        }
 
         // Set the bot's status
         api.updateActivity("RomeBot v3.0-a.3", video_url);
 
         // Register slash commands
-        RegisterSlashCommands.RegisterSlashCommand(api);
+        //RegisterSlashCommands.RegisterSlashCommand(api);
 
         // Register slash command listeners
         // Informational commands
@@ -80,6 +85,7 @@ public class Main {
     static DiscordApi DiscordLogin(String token, Integer current_shard, Integer total_shards) {
         try {
             // Connect to Discord
+            logger.info("Attempting discord login");
             return new DiscordApiBuilder()
                     .setToken(token)
                     .setAllIntents()
@@ -88,8 +94,8 @@ public class Main {
                     .login().join();
         }
         catch (Exception e) {
-            logger.fatal("Unable to log into Discord. Bailing!");
             logger.fatal(e.toString());
+            logger.fatal("Unable to log in to Discord. Aborting startup!");
         }
         return null;
     }
