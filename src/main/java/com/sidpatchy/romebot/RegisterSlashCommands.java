@@ -16,7 +16,6 @@ public class RegisterSlashCommands {
      * Function to register slash commands
      *
      * @param api pass API into function
-     * @param forceOverwrite whether slash commands should be overwritten when called.
      */
     public static void RegisterSlashCommand(DiscordApi api) {
         api.bulkOverwriteGlobalSlashCommands(Arrays.asList(

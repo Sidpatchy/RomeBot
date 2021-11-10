@@ -14,3 +14,13 @@ botName: RomeBot
 
 # URL of the YouTube video RomeBot claims to be streaming
 video_url: https://www.youtube.com/watch?v=AeZRYhLDLeU
+
+# ----------------- SHARD CONFIG ---------------
+# Shards are unlikely to be needed for this bot, as a result, it is assumed that
+# only one shard will be running at a time.
+
+# The shard the bot should log in to
+current_shard: 0
+
+# The total number of shards.
+total_shards: 1

@@ -3,6 +3,8 @@ package com.sidpatchy.romebot;
 import com.sidpatchy.romebot.File.ReadConfig;
 import com.sidpatchy.romebot.File.ResourceLoader;
 import com.sidpatchy.romebot.SlashCommand.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 
@@ -31,6 +33,8 @@ import java.io.IOException;
  */
 public class Main {
 
+    private static final Logger logger = LogManager.getLogger(Main.class);
+
     public static void main(String[] args) throws IOException {
         // Load config file if it doesn't exist
         String configFile = "config.yml";
@@ -40,15 +44,18 @@ public class Main {
         // Read data from config file
         ReadConfig config = new ReadConfig();
         String token = config.getString(configFile, "token");
+        Integer current_shard = config.getInt(configFile, "current_shard");
+        Integer total_shards = config.getInt(configFile, "total_shards");
+        String video_url = config.getString(configFile, "video_url");
 
-        // Connect to Discord
-        DiscordApi api = new DiscordApiBuilder()
-                .setToken(token)
-                .setAllIntents()
-                .login().join();
+        DiscordApi api = DiscordLogin(token, current_shard, total_shards);
+
+        if (api == null) {
+            System.exit(0);
+        }
 
         // Set the bot's status
-        api.updateActivity("RomeBot v3.0-a.2", config.getString(configFile, "video_url"));
+        api.updateActivity("RomeBot v3.0-a.3", video_url);
 
         // Register slash commands
         RegisterSlashCommands.RegisterSlashCommand(api);
@@ -68,5 +75,22 @@ public class Main {
         api.addSlashCommandCreateListener(new Crucify());
         api.addSlashCommandCreateListener(new Impale());
         api.addSlashCommandCreateListener(new CarthagoDelandaEst());
+    }
+
+    static DiscordApi DiscordLogin(String token, Integer current_shard, Integer total_shards) {
+        try {
+            // Connect to Discord
+            return new DiscordApiBuilder()
+                    .setToken(token)
+                    .setAllIntents()
+                    .setCurrentShard(current_shard)
+                    .setTotalShards(total_shards)
+                    .login().join();
+        }
+        catch (Exception e) {
+            logger.fatal("Unable to log into Discord. Bailing!");
+            logger.fatal(e.toString());
+        }
+        return null;
     }
 }

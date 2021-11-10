@@ -1,9 +1,14 @@
 package com.sidpatchy.romebot.File;
 
+import com.sidpatchy.romebot.Main;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 
 
 public class ResourceLoader {
+    private static final Logger logger = LogManager.getLogger(Main.class);
     private final File dataFolder = new File("config");
 
     public InputStream getResource(String filename) {
@@ -45,7 +50,7 @@ public class ResourceLoader {
                 out.close();
                 in.close();
             } else {
-                System.out.println("Could not save " + outFile.getName() + " to " + outFile + " because " + outFile.getName() + " already exists.");
+                logger.debug("Could not save " + outFile.getName() + " to " + outFile + " because " + outFile.getName() + " already exists.");
             }
         } catch (IOException ex) {}
     }

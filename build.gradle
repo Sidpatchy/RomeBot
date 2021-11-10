@@ -4,12 +4,11 @@ plugins {
 }
 
 jar {
-    manifest {
-        attributes(
-                'Main-Class': 'com.sidpatchy.romebot.Main'
+    manifest.attributes(
+                'Main-Class': 'com.sidpatchy.romebot.Main',
+                'Multi-Release': 'true'
         )
     }
-}
 
 sourceCompatibility = 1.17
 
@@ -20,6 +19,6 @@ repositories {
 dependencies {
     implementation 'org.javacord:javacord:3.3.2'
     implementation 'org.yaml:snakeyaml:1.29'
-    runtimeOnly group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.1'
-    runtimeOnly group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.14.1'
+    implementation 'org.apache.logging.log4j:log4j-api:2.14.1'
+    implementation 'org.apache.logging.log4j:log4j-core:2.14.1'
 }
