@@ -63,7 +63,7 @@ public class Main {
         api.updateActivity("RomeBot v3.0-a.3", video_url);
 
         // Register slash commands
-        //RegisterSlashCommands.RegisterSlashCommand(api);
+        RegisterSlashCommands.RegisterSlashCommand(api);
 
         // Register slash command listeners
         // Informational commands
