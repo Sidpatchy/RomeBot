@@ -1,4 +1,7 @@
 # RomeBot by Sidpatchy
+[![Build Status](https://ci.sidpatchy.com/buildStatus/icon?job=RomeBot&style=flat-square)](https://ci.sidpatchy.com/job/RomeBot/)
+[![License](https://img.shields.io/github/license/Sidpatchy/RomeBot?style=flat-square)](https://github.com/Sidpatchy/RomeBot/blob/master/LICENSE)
+
 > Why the rewrite?
 
 Discord.py is no longer being developed, as a result, RomeBot will no longer be developed using Discord.py.
