@@ -1,5 +1,5 @@
 # RomeBot by Sidpatchy
-[![Build Status](https://ci.sidpatchy.com/buildStatus/icon?job=RomeBot&style=flat-square)](https://ci.sidpatchy.com/job/RomeBot/)
+[![Build Status](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.sidpatchy.com%2Fjob%2FRomeBot%2F&style=flat-square)](https://ci.sidpatchy.com/job/RomeBot/)
 [![License](https://img.shields.io/github/license/Sidpatchy/RomeBot?style=flat-square)](https://github.com/Sidpatchy/RomeBot/blob/master/LICENSE)
 
 > Why the rewrite?
