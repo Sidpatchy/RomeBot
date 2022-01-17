@@ -21,12 +21,13 @@ public class Assassinate implements SlashCommandCreateListener {
         SlashCommandInteraction slashCommandInteraction = event.getSlashCommandInteraction();
         Server server = slashCommandInteraction.getServer().orElse(null);
         String commandName = slashCommandInteraction.getCommandName();
+        User author = slashCommandInteraction.getUser();
+        User user = slashCommandInteraction.getFirstOptionUserValue().orElse(null);
 
         if (commandName.equalsIgnoreCase("assassinate")) {
-            User user = (Objects.requireNonNull(slashCommandInteraction.requestFirstOptionUserValue().orElse(null))).getNow(slashCommandInteraction.getUser());
             if (user == null) {user = slashCommandInteraction.getUser();}
             slashCommandInteraction.createImmediateResponder()
-                    .addEmbed(AssassinateEmbed.getAssassinate(user, server))
+                    .addEmbed(AssassinateEmbed.getAssassinate(user, author, server))
                     .respond();
         }
     }

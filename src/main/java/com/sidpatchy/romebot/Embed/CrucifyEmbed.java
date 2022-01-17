@@ -8,7 +8,9 @@ import java.awt.*;
 
 
 public class CrucifyEmbed {
-    public static EmbedBuilder getCrucify(User user, Server server) {
+    public static EmbedBuilder getCrucify(User user, User author, Server server) {
+        if (user == null) { user = author; }
+
         return new EmbedBuilder()
                 .setColor(Color.decode("#e74d3c"))
                 .setAuthor(user.getDisplayName(server).toUpperCase() + " HAS BEEN CRUCIFIED!", "", user.getAvatar())

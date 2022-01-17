@@ -19,15 +19,12 @@ public class Joined implements SlashCommandCreateListener {
         SlashCommandInteraction slashCommandInteraction = event.getSlashCommandInteraction();
         Server server = slashCommandInteraction.getServer().orElse(null);
         String commandName = slashCommandInteraction.getCommandName();
+        User author = slashCommandInteraction.getUser();
+        User user = slashCommandInteraction.getFirstOptionUserValue().orElse(null);
 
         if (commandName.equalsIgnoreCase("joined")) {
-            //  Determine the value of user
-            User user = slashCommandInteraction.getFirstOptionUserValue().orElse(null);
-            if (user == null) {
-                user = slashCommandInteraction.getUser();
-            }
             slashCommandInteraction.createImmediateResponder()
-                    .addEmbed(JoinedEmbed.getJoined(user, server))
+                    .addEmbed(JoinedEmbed.getJoined(user, author, server))
                     .respond();
         }
     }
