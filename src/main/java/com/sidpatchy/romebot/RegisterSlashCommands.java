@@ -9,7 +9,7 @@ import java.util.List;
 public class RegisterSlashCommands {
 
     public static void DeleteSlashCommands (DiscordApi api) {
-        api.bulkOverwriteGlobalSlashCommands(List.of()).join();
+        api.bulkOverwriteGlobalApplicationCommands(List.of()).join();
     }
 
     /**
@@ -18,7 +18,7 @@ public class RegisterSlashCommands {
      * @param api pass API into function
      */
     public static void RegisterSlashCommand(DiscordApi api) {
-        api.bulkOverwriteGlobalSlashCommands(Arrays.asList(
+        api.bulkOverwriteGlobalApplicationCommands(Arrays.asList(
                 // Information commands
                 new SlashCommandBuilder().setName("info").setDescription("Get to know more about RomeBot"),
                 new SlashCommandBuilder().setName("help").setDescription("Help command").addOption(SlashCommandOption.createWithChoices(SlashCommandOptionType.STRING, "command-name", "Command to get more info on", false,
