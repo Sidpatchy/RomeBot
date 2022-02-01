@@ -82,7 +82,16 @@ public class Main {
         api.addSlashCommandCreateListener(new CarthagoDelandaEst());
     }
 
-    static DiscordApi DiscordLogin(String token, Integer current_shard, Integer total_shards) {
+    private static DiscordApi DiscordLogin(String token, Integer current_shard, Integer total_shards) {
+        if (token == null || token.equals("")) {
+            logger.error("Token can't be null or empty. Check your config file!");
+            System.exit(1);
+        }
+        else if (current_shard == null || total_shards == null) {
+            logger.fatal("Shard config is empty, check your config file!");
+            System.exit(3);
+        }
+
         try {
             // Connect to Discord
             logger.info("Attempting discord login");
@@ -94,6 +103,7 @@ public class Main {
                     .login().join();
         }
         catch (Exception e) {
+            e.printStackTrace();
             logger.fatal(e.toString());
             logger.fatal("Unable to log in to Discord. Aborting startup!");
         }
