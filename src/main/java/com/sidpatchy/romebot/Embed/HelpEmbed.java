@@ -1,5 +1,6 @@
 package com.sidpatchy.romebot.Embed;
 
+import com.sidpatchy.romebot.Main;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import java.awt.*;
 import java.util.HashMap;
@@ -73,7 +74,7 @@ public class HelpEmbed {
                 help = regularCommandHelp.get(commandName);
             }
             return new EmbedBuilder()
-                    .setColor(Color.decode("#e74d3c"))
+                    .setColor(Main.getColour())
                     .addField(commandName.toUpperCase(Locale.ROOT), help)
                     .addField("USAGE", "```" + usage + "```");
         }

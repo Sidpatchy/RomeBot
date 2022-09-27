@@ -1,12 +1,22 @@
 package com.sidpatchy.romebot;
 
+import com.sidpatchy.Discord.ParseCommands;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.interaction.*;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class RegisterSlashCommands {
+
+    static ParseCommands parseCommands = new ParseCommands(Main.getCommandsFile());
+    private static final Logger logger = LogManager.getLogger(Main.class);
 
     public static void DeleteSlashCommands (DiscordApi api) {
         api.bulkOverwriteGlobalApplicationCommands(List.of()).join();
@@ -18,43 +28,30 @@ public class RegisterSlashCommands {
      * @param api pass API into function
      */
     public static void RegisterSlashCommand(DiscordApi api) {
+        ArrayList<SlashCommandOptionChoice> helpCommandOptions = new ArrayList<>();
+        for (String s : Main.getCommandsList()) {
+            helpCommandOptions.add(SlashCommandOptionChoice.create(parseCommands.getCommandName(s), parseCommands.getCommandName(s)));
+        }
+
         api.bulkOverwriteGlobalApplicationCommands(Arrays.asList(
-                // Information commands
-                new SlashCommandBuilder().setName("info").setDescription("Get to know more about RomeBot"),
-                new SlashCommandBuilder().setName("help").setDescription("Help command").addOption(SlashCommandOption.createWithChoices(SlashCommandOptionType.STRING, "command-name", "Command to get more info on", false,
-                        Arrays.asList(
-                                SlashCommandOptionChoice.create("info", "info"),
-                                SlashCommandOptionChoice.create("joined", "joined"),
-                                SlashCommandOptionChoice.create("servers", "servers"),
-                                SlashCommandOptionChoice.create("time", "time"),
-                                SlashCommandOptionChoice.create("uptime", "uptime"),
-                                SlashCommandOptionChoice.create("version", "version"),
-                                SlashCommandOptionChoice.create("assassinate", "assassinate"),
-                                SlashCommandOptionChoice.create("birthday", "birthday"),
-                                SlashCommandOptionChoice.create("carthago-delanda-est", "carthago-delanda-est"),
-                                SlashCommandOptionChoice.create("crucify", "crucify"),
-                                SlashCommandOptionChoice.create("enslave", "enslave"),
-                                SlashCommandOptionChoice.create("impale", "impale"),
-                                SlashCommandOptionChoice.create("jupiterhates", "jupiterhates"),
-                                SlashCommandOptionChoice.create("sack", "sack"),
-                                SlashCommandOptionChoice.create("stab", "stab")
-                        ))),
-                new SlashCommandBuilder().setName("joined").setDescription("Get a user's join date").addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
-                new SlashCommandBuilder().setName("version").setDescription("Get RomeBot's version info"),
-                new SlashCommandBuilder().setName("time").setDescription("Get the current time"),
-                new SlashCommandBuilder().setName("servers").setDescription("Reports the number of servers the bot is in"),
+                // Informational commands
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("info")).setDescription(parseCommands.getCommandHelp("info")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("help")).setDescription(parseCommands.getCommandHelp("help"))
+                        .addOption(SlashCommandOption.createWithChoices(SlashCommandOptionType.STRING, "command-name", "Command to get more info on", false, helpCommandOptions)),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("joined")).setDescription(parseCommands.getCommandHelp("joined")).addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("time")).setDescription(parseCommands.getCommandHelp("time")),
 
                 // Regular commands
-                new SlashCommandBuilder().setName("assassinate").setDescription("Have a user assassinated").addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
-                new SlashCommandBuilder().setName("crucify").setDescription("Crucify a user").addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
-                new SlashCommandBuilder().setName("carthago-delanda-est").setDescription("Salt Carthage"),
-                new SlashCommandBuilder().setName("impale").setDescription("Impale a user").addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
-                new SlashCommandBuilder().setName("stab").setDescription("Stab a user").addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
-                new SlashCommandBuilder().setName("uptime").setDescription("How long the bot has gone since crashing"),
-                new SlashCommandBuilder().setName("enslave").setDescription("Enslave a user").addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
-                new SlashCommandBuilder().setName("sack").setDescription("Sack a user").addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
-                new SlashCommandBuilder().setName("jupiterhates").setDescription("Smites a user").addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
-                new SlashCommandBuilder().setName("birthday").setDescription("Reports how long it is until Julius Caesar's birthday")
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("assassinate")).setDescription(parseCommands.getCommandHelp("assassinate")).addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("crucify")).setDescription(parseCommands.getCommandHelp("crucify")).addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("carthago-delanda-est")).setDescription(parseCommands.getCommandHelp("carthago-delanda-est")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("impale")).setDescription(parseCommands.getCommandHelp("impale")).addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("stab")).setDescription(parseCommands.getCommandHelp("stab")).addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("uptime")).setDescription(parseCommands.getCommandHelp("uptime")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("enslave")).setDescription(parseCommands.getCommandHelp("enslave")).addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("sack")).setDescription(parseCommands.getCommandHelp("sack")).addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("jupiterhates")).setDescription(parseCommands.getCommandHelp("jupiterhates")).addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
+                new SlashCommandBuilder().setName(parseCommands.getCommandName("birthday")).setDescription(parseCommands.getCommandHelp("birthday"))
         )).join();
     }
 }

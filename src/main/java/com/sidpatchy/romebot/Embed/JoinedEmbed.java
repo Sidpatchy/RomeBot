@@ -1,5 +1,6 @@
 package com.sidpatchy.romebot.Embed;
 
+import com.sidpatchy.romebot.Main;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
@@ -16,8 +17,8 @@ public class JoinedEmbed {
         long timestamp = instant.toEpochMilli();
 
         return new EmbedBuilder()
-                .setColor(Color.decode("#e74d3c"))
+                .setColor(Main.getColour())
                 .setAuthor(user.getDisplayName(server), "", user.getAvatar())
-                .setDescription(String.format("<t:%ts>", timestamp));
+                .setDescription("Joined on " + String.format("<t:%ts>", timestamp));
     }
 }

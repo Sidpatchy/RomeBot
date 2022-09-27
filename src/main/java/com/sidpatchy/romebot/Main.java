@@ -1,18 +1,25 @@
 package com.sidpatchy.romebot;
 
-import com.sidpatchy.romebot.File.ReadConfig;
-import com.sidpatchy.romebot.File.ResourceLoader;
-import com.sidpatchy.romebot.SlashCommand.*;
+import com.sidpatchy.Discord.ParseCommands;
+import com.sidpatchy.File.ConfigReader;
+import com.sidpatchy.File.ResourceLoader;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 
+import java.awt.*;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * RomeBot - The only discord bot dedicated to the Roman Republic (and Empire)
- * Copyright (C) 2021  Sidpatchy
+ * Copyright (C) 2018-2022  Sidpatchy
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,6 +34,24 @@ import java.io.IOException;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
+ * Todo for v3 release:
+ * - ~~Shared Discord bot library? | Robin
+ * - Implement commands.yml -- mostly done, need to redo help command
+ * - ~~Make the listener situation less dumb
+ * - ~~fix /carthago-delanda-est
+ * - ~~/enslave
+ * - ~~Make /info contain more info
+ * - ~~Make /severs less useless (integrate with /info?)
+ * - ~~Make /joined less dumb looking (remove in favour of ClaireBot's /user?)
+ * - /jupiterhates
+ * - /sack
+ * - /stab
+ * - /time | why does it exist | dunno m8
+ * - /uptime (Probably remove and just integrate with /info)
+ * - ~~Make /version less useless (integrate with /info?)
+ * - ~~Ensure any mention of dates is standardized
+ * - Bug testing
+ *
  * @since November 2018
  * @version 3.0
  * @author Sidpatchy
@@ -35,22 +60,39 @@ public class Main {
 
     private static final Logger logger = LogManager.getLogger(Main.class);
 
+    private static DiscordApi api;
+
+    // related to file handling
+    private static String configFile = "config.yml";
+    private static String commandsFile = "commands.yml";
+    static ParseCommands parseCommands = new ParseCommands(Main.getCommandsFile());
+
+    // Related to config options
+    private static String token;
+    private static String colour;
+    private static Integer current_shard;
+    private static Integer total_shards;
+    private static String video_url;
+
+    private static List<String> informationalCommandList = Arrays.asList("info", "joined", "time", "uptime");
+    private static List<String> regularCommandsList = Arrays.asList("assassinate", "birthday", "carthago-delanda-est", "crucify", "enslave", "impale", "jupiterhates", "sack", "stab");
     public static void main(String[] args) throws IOException {
         logger.info("RomeBot loading...");
 
         // Load config file if it doesn't exist
-        String configFile = "config.yml";
         ResourceLoader loader = new ResourceLoader();
         loader.saveResource(configFile, false);
+        loader.saveResource(commandsFile, false);
 
         // Read data from config file
-        ReadConfig config = new ReadConfig();
-        String token = config.getString(configFile, "token");
-        Integer current_shard = config.getInt(configFile, "current_shard");
-        Integer total_shards = config.getInt(configFile, "total_shards");
-        String video_url = config.getString(configFile, "video_url");
+        ConfigReader config = new ConfigReader();
+        token = config.getString(configFile, "token");
+        colour = config.getString(configFile, "colour");
+        current_shard = config.getInt(configFile, "current_shard");
+        total_shards = config.getInt(configFile, "total_shards");
+        video_url = config.getString(configFile, "video_url");
 
-        DiscordApi api = DiscordLogin(token, current_shard, total_shards);
+        api = DiscordLogin(token, current_shard, total_shards);
 
         if (api == null) {
             System.exit(0);
@@ -63,23 +105,10 @@ public class Main {
         api.updateActivity("RomeBot v3.0-a.3", video_url);
 
         // Register slash commands
-        RegisterSlashCommands.RegisterSlashCommand(api);
+        registerSlashCommands();
 
         // Register slash command listeners
-        // Informational commands
-        api.addSlashCommandCreateListener(new Info());
-        api.addSlashCommandCreateListener(new Help());
-        api.addSlashCommandCreateListener(new Joined());
-        api.addSlashCommandCreateListener(new Version());
-        api.addSlashCommandCreateListener(new Time());
-        api.addSlashCommandCreateListener(new Servers(api));
-
-        // Regular commands
-        api.addSlashCommandCreateListener(new Assassinate());
-        api.addSlashCommandCreateListener(new Birthday());
-        api.addSlashCommandCreateListener(new Crucify());
-        api.addSlashCommandCreateListener(new Impale());
-        api.addSlashCommandCreateListener(new CarthagoDelandaEst());
+        api.addSlashCommandCreateListener(new SlashCommandListener());
     }
 
     private static DiscordApi DiscordLogin(String token, Integer current_shard, Integer total_shards) {
@@ -109,4 +138,37 @@ public class Main {
         }
         return null;
     }
+
+    public static void registerSlashCommands() throws FileNotFoundException {
+        try {
+            RegisterSlashCommands.RegisterSlashCommand(api);
+            logger.info("Slash commands registered successfully!");
+        }
+        catch (NullPointerException e) {
+            e.printStackTrace();
+            logger.fatal(e.toString());
+            logger.fatal("There was an error while registering slash commands. There's a pretty good chance it's related to an uncaught issue with the commands.yml file, trying to read all commands and printing out results.");
+            for (String s : getCommandsList()) {
+                logger.fatal(parseCommands.getCommandName(s));
+            }
+            logger.fatal("If the above list looks incomplete or generates another error, check your commands.yml file!");
+            System.exit(4);
+        }
+        catch (Exception e) {
+            logger.fatal(e.toString());
+            logger.fatal("There was an error while registering slash commands.");
+            System.exit(5);
+        }
+    }
+
+    public static String getConfigFile() { return configFile; }
+    public static String getCommandsFile() { return commandsFile; }
+    public static List<String> getCommandsList() {
+        return Stream.of(informationalCommandList, regularCommandsList)
+                .flatMap(Collection::stream)
+                .collect(Collectors.toList());
+    }
+    public static List<String> getInformationalCommandList() { return  informationalCommandList; }
+    public static List<String> getRegularCommandsList() { return regularCommandsList; }
+    public static Color getColour() { return  Color.decode(colour); }
 }

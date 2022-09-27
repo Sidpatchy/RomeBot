@@ -12,6 +12,9 @@ token:
 # Name of bot to be used in logs and
 botName: RomeBot
 
+# Colour to use in embeds
+colour: "#e74d3c"
+
 # URL of the YouTube video RomeBot claims to be streaming
 video_url: https://www.youtube.com/watch?v=AeZRYhLDLeU
 

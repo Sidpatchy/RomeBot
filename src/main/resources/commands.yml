@@ -6,7 +6,12 @@
 # Additionally allows for changing command names during runtime.
 
 # ----------------- INFORMATIONAL COMMANDS ----------------
-informationalCommands:
+commands:
+  help:
+    name: "help"
+    usage: "/help <optional: command-name>"
+    help: "Learn how to use ClaireBot's commands and various features."
+
   info:
     name: info
     usage: /info
@@ -17,10 +22,11 @@ informationalCommands:
     usage: "/joined <optional: @user>"
     help: Reports when a user joined the server
 
-  servers:
-    name: servers
-    usage: /servers
-    help: Reports how many servers RomeBot is in
+  # REMOVED - Integrated into /info
+  # servers:
+  #  name: servers
+  #  usage: /servers
+  #  help: Reports how many servers RomeBot is in
 
   time:
     name: time
@@ -32,13 +38,13 @@ informationalCommands:
     usage: /uptime
     help: "Reports how long the bot has gone without crashing (record: 125 days)"
 
-  version:
-    name: version
-    usage: /version
-    help: Gives info on the current version of RomeBot
+  # REMOVED - Integrated into /info
+  # version:
+  #   name: version
+  #   usage: /version
+  #   help: Gives info on the current version of RomeBot
 
 # -------------------- REGULAR COMMANDS -------------------
-regularCommands:
   assassinate:
     name: assassinate
     usage: "/assassinate <optional: @user>"
@@ -49,7 +55,7 @@ regularCommands:
     usage: /birthday
     help: Returns how much longer we must wait for Julius Caesar's birthday
 
-  carthago_delanda_est:
+  carthago-delanda-est:
     name: carthago-delanda-est
     usage: /carthago-delanda-est
     help: Based salting of Carthage
@@ -83,3 +89,5 @@ regularCommands:
     name: stab
     usage: "/stab <optional: @user>"
     help: Stabs a mentioned user
+
+config-revision: 1

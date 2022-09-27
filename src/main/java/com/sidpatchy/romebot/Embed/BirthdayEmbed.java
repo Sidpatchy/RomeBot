@@ -1,5 +1,6 @@
 package com.sidpatchy.romebot.Embed;
 
+import com.sidpatchy.romebot.Main;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 
 import java.awt.*;
@@ -14,8 +15,8 @@ public class BirthdayEmbed {
             birthday = Instant.parse(year + "-07-12T12:00:00.00Z");
         }
         return new EmbedBuilder()
-                .setColor(Color.decode("#e74d3c"))
-                .setDescription("Caesar's party will be <t:" + getEpochDiff(birthday) + ":R>");
+                .setColor(Main.getColour())
+                .setDescription("Caesar's party is <t:" + getEpochDiff(birthday) + ":R>!");
     }
 
     /**
