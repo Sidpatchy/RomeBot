@@ -36,24 +36,24 @@ import java.util.stream.Stream;
  *
  * Todo for v3 release:
  * - ~~Shared Discord bot library? | Robin
- * - Implement commands.yml -- mostly done, need to redo help command
+ * - ~~Implement commands.yml
  * - ~~Make the listener situation less dumb
  * - ~~fix /carthago-delanda-est
  * - ~~/enslave
  * - ~~Make /info contain more info
  * - ~~Make /severs less useless (integrate with /info?)
  * - ~~Make /joined less dumb looking (remove in favour of ClaireBot's /user?)
- * - /jupiterhates
- * - /sack
- * - /stab
- * - /time | why does it exist | dunno m8
- * - /uptime (Probably remove and just integrate with /info)
+ * - ~~/jupiterhates
+ * - ~~/sack
+ * - ~~/stab
+ * - ~~/time | why does it exist | dunno m8 | YEET
+ * - ~~/uptime (Probably remove and just integrate with /info)
  * - ~~Make /version less useless (integrate with /info?)
  * - ~~Ensure any mention of dates is standardized
  * - Bug testing
  *
  * @since November 2018
- * @version 3.0
+ * @version 3.0.0
  * @author Sidpatchy
  */
 public class Main {
@@ -61,6 +61,8 @@ public class Main {
     private static final Logger logger = LogManager.getLogger(Main.class);
 
     private static DiscordApi api;
+
+    private static final long startMillis = System.currentTimeMillis();
 
     // related to file handling
     private static String configFile = "config.yml";
@@ -74,7 +76,7 @@ public class Main {
     private static Integer total_shards;
     private static String video_url;
 
-    private static List<String> informationalCommandList = Arrays.asList("info", "joined", "time", "uptime");
+    private static List<String> informationalCommandList = Arrays.asList("info", "joined"); // intentionally excludes help
     private static List<String> regularCommandsList = Arrays.asList("assassinate", "birthday", "carthago-delanda-est", "crucify", "enslave", "impale", "jupiterhates", "sack", "stab");
     public static void main(String[] args) throws IOException {
         logger.info("RomeBot loading...");
@@ -102,7 +104,7 @@ public class Main {
         }
 
         // Set the bot's status
-        api.updateActivity("RomeBot v3.0-a.3", video_url);
+        api.updateActivity("/help | RomeBot v3.0-b.1", video_url);
 
         // Register slash commands
         registerSlashCommands();
@@ -161,6 +163,7 @@ public class Main {
         }
     }
 
+    public static long getStartMillis() { return startMillis; }
     public static String getConfigFile() { return configFile; }
     public static String getCommandsFile() { return commandsFile; }
     public static List<String> getCommandsList() {

@@ -33,10 +33,11 @@ commands:
     usage: /time
     help: Returns the current time
 
-  uptime:
-    name: uptime
-    usage: /uptime
-    help: "Reports how long the bot has gone without crashing (record: 125 days)"
+  # REMOVED - Integrated into /info
+  # uptime:
+  #   name: uptime
+  #   usage: /uptime
+  #   help: "Reports how long the bot has gone without crashing (record: 125 days)"
 
   # REMOVED - Integrated into /info
   # version:
