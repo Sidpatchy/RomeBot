@@ -9,7 +9,7 @@
 # Discord bot token, get one at https://discord.com/developers/applications
 token:
 
-# Name of bot to be used in logs and
+# Name of bot to be used in logs
 botName: RomeBot
 
 # Colour to use in embeds
@@ -19,7 +19,7 @@ colour: "#e74d3c"
 video_url: https://www.youtube.com/watch?v=AeZRYhLDLeU
 
 # ----------------- SHARD CONFIG ---------------
-# Shards are unlikely to be needed for this bot, as a result, it is assumed that
+# Shards, while supported, are unlikely to be needed for this bot, as a result, it is assumed that
 # only one shard will be running at a time.
 
 # The shard the bot should log in to

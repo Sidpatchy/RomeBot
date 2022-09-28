@@ -1,19 +1,24 @@
-# RomeBot by Sidpatchy
+# RomeBot
 [![Build Status](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.sidpatchy.com%2Fjob%2FRomeBot%2F&style=flat-square)](https://ci.sidpatchy.com/job/RomeBot/)
 [![License](https://img.shields.io/github/license/Sidpatchy/RomeBot?style=flat-square)](https://github.com/Sidpatchy/RomeBot/blob/master/LICENSE)
 
-> Why the rewrite?
+The only Discord bot dedicated to the everlasting Glory of Rome.
 
-Discord.py is no longer being developed, as a result, RomeBot will no longer be developed using Discord.py.
+## Getting Started
+RomeBot can be invited to a server using (put link here). Just use /help to get started!
 
-> Why'd you pick Java?
+If you'd like, RomeBot can be easily self-hosted using one of pre-built binaries which can be found on the 
+[releases](https://github.com/Sidpatchy/RomeBot/releases) tab. Otherwise, potentially unstable development builds can be
+found on my [Jenkins](https://ci.sidpatchy.com/job/RomeBot/).
 
-I find java to be a fun language to work with. 
+RomeBot is written with Java 11 source compatability, but it is highly recommended to use Java 17 as all testing is
+performed using Java 17 (specifically the Temurin 17 JDK).
 
-> What is changing?
+## About
+RomeBot has been in continuous development since 2018 and is written in Java as of RomeBot 3 using Javacord.
 
-RomeBot will be migrating to Javacord.
-
-There are some minor tweaks to how things are formatted, but the biggest change is the removal of "old fashioned" commands in favour of slash commands. I am building the bot in a way that adding "old fashioned" commands would be relatively easy, but as it stands, I see no real reason to put development time into something that is being deprecated by Discord.
-
-Additionally, new releases of RomeBot will be licensed under the GPLv3.
+## Previous Versions
+With RomeBot 3, RomeBot's licence has been updated to the GPLv3. RomeBot's previous versions are ideally not used, 
+however, if you want to use or modify one of them for any reason they are still licenced under the much more permissive
+MIT licence. They can be found by selecting the [version 1](https://github.com/Sidpatchy/RomeBot/tree/Version-1) or
+[version 2](https://github.com/Sidpatchy/RomeBot/tree/Version-2) branches.

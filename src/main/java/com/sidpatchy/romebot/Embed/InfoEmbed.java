@@ -16,7 +16,7 @@ public class InfoEmbed {
                 .addField("Add Me to a Server", "Adding me to a server is simple, all you have to do is click [here](https://discord.com/oauth2/authorize?client_id=511050489928876052&scope=bot&permissions=0)", true)
                 .addField("GitHub", "RomeBot is open source, that means you can view all of its code! Check out its [GitHub!](https://github.com/Sidpatchy/RomeBot)", true)
                 .addField("Server Count", "I have enlightened **" + api.getServers().size() + "** servers.", true)
-                .addField("Version", "I am running RomeBot **v3.0-b.1**, released on **2022-09-27**", true)
+                .addField("Version", "I am running RomeBot **v3.0.0**, released on **2022-09-27**", true)
                 .addField("Uptime", "Started on <t:" + Main.getStartMillis() / 1000 + ">" + "\n*" + timeSinceStart + "*", true);
     }
 }

@@ -34,24 +34,6 @@ import java.util.stream.Stream;
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
- * Todo for v3 release:
- * - ~~Shared Discord bot library? | Robin
- * - ~~Implement commands.yml
- * - ~~Make the listener situation less dumb
- * - ~~fix /carthago-delanda-est
- * - ~~/enslave
- * - ~~Make /info contain more info
- * - ~~Make /severs less useless (integrate with /info?)
- * - ~~Make /joined less dumb looking (remove in favour of ClaireBot's /user?)
- * - ~~/jupiterhates
- * - ~~/sack
- * - ~~/stab
- * - ~~/time | why does it exist | dunno m8 | YEET
- * - ~~/uptime (Probably remove and just integrate with /info)
- * - ~~Make /version less useless (integrate with /info?)
- * - ~~Ensure any mention of dates is standardized
- * - Bug testing
- *
  * @since November 2018
  * @version 3.0.0
  * @author Sidpatchy
@@ -104,7 +86,7 @@ public class Main {
         }
 
         // Set the bot's status
-        api.updateActivity("/help | RomeBot v3.0-b.1", video_url);
+        api.updateActivity("/help | Salting Carthage!", video_url);
 
         // Register slash commands
         registerSlashCommands();

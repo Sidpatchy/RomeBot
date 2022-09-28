@@ -22,28 +22,10 @@ commands:
     usage: "/joined <optional: @user>"
     help: Reports when a user joined the server
 
-  # REMOVED - Integrated into /info
-  # servers:
-  #  name: servers
-  #  usage: /servers
-  #  help: Reports how many servers RomeBot is in
-
   time:
     name: time
     usage: /time
     help: Returns the current time
-
-  # REMOVED - Integrated into /info
-  # uptime:
-  #   name: uptime
-  #   usage: /uptime
-  #   help: "Reports how long the bot has gone without crashing (record: 125 days)"
-
-  # REMOVED - Integrated into /info
-  # version:
-  #   name: version
-  #   usage: /version
-  #   help: Gives info on the current version of RomeBot
 
 # -------------------- REGULAR COMMANDS -------------------
   assassinate:
