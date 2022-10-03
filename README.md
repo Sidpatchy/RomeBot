@@ -1,3 +1,5 @@
+**This branch is no longer developed, it WILL NOT be updated. Please use the master branch instead.**
+
 # RomeBot by Sidpatchy
 Get Started By Typing !help
 
