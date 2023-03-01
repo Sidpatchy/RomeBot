@@ -18,7 +18,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.Sidpatchy:Robin:1.0.5'
+    implementation 'com.github.Sidpatchy:Robin:1.1.1'
 
     implementation 'org.javacord:javacord:3.7.0'
     implementation 'org.yaml:snakeyaml:1.33'
