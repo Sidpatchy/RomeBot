@@ -3,7 +3,6 @@ package com.sidpatchy.romebot.Embed;
 import com.sidpatchy.romebot.Main;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 
-import java.awt.*;
 import java.time.*;
 
 

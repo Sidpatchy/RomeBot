@@ -1,19 +1,23 @@
 package com.sidpatchy.romebot;
 
-import com.sidpatchy.Discord.ParseCommands;
+import com.sidpatchy.Robin.Discord.ParseCommands;
 import org.javacord.api.DiscordApi;
-import org.javacord.api.interaction.*;
+import org.javacord.api.interaction.SlashCommandBuilder;
+import org.javacord.api.interaction.SlashCommandOption;
+import org.javacord.api.interaction.SlashCommandOptionChoice;
+import org.javacord.api.interaction.SlashCommandOptionType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class RegisterSlashCommands {
 
     static ParseCommands parseCommands = new ParseCommands(Main.getCommandsFile());
 
     public static void DeleteSlashCommands (DiscordApi api) {
-        api.bulkOverwriteGlobalApplicationCommands(List.of()).join();
+        api.bulkOverwriteGlobalApplicationCommands(Set.of()).join();
     }
 
     /**
@@ -27,7 +31,7 @@ public class RegisterSlashCommands {
             helpCommandOptions.add(SlashCommandOptionChoice.create(parseCommands.getCommandName(s), parseCommands.getCommandName(s)));
         }
 
-        api.bulkOverwriteGlobalApplicationCommands(Arrays.asList(
+        api.bulkOverwriteGlobalApplicationCommands(new HashSet<>(Arrays.asList(
                 // Informational commands
                 new SlashCommandBuilder().setName(parseCommands.getCommandName("info")).setDescription(parseCommands.getCommandHelp("info")),
                 new SlashCommandBuilder().setName(parseCommands.getCommandName("help")).setDescription(parseCommands.getCommandHelp("help"))
@@ -44,6 +48,6 @@ public class RegisterSlashCommands {
                 new SlashCommandBuilder().setName(parseCommands.getCommandName("sack")).setDescription(parseCommands.getCommandHelp("sack")).addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
                 new SlashCommandBuilder().setName(parseCommands.getCommandName("jupiterhates")).setDescription(parseCommands.getCommandHelp("jupiterhates")).addOption(SlashCommandOption.create(SlashCommandOptionType.USER, "user", "Optionally mention a user")),
                 new SlashCommandBuilder().setName(parseCommands.getCommandName("birthday")).setDescription(parseCommands.getCommandHelp("birthday"))
-        )).join();
+        ))).join();
     }
 }

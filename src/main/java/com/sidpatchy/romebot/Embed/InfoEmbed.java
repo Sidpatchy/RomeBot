@@ -5,8 +5,6 @@ import org.apache.commons.lang3.time.DurationFormatUtils;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 
-import java.awt.*;
-
 public class InfoEmbed {
     public static EmbedBuilder getInfo(DiscordApi api) {
         String timeSinceStart = DurationFormatUtils.formatDurationWords(System.currentTimeMillis() - Main.getStartMillis(), true, false);

@@ -1,6 +1,6 @@
 package com.sidpatchy.romebot;
 
-import com.sidpatchy.Discord.ParseCommands;
+import com.sidpatchy.Robin.Discord.ParseCommands;
 import com.sidpatchy.romebot.Embed.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,7 +11,6 @@ import org.javacord.api.interaction.SlashCommandInteraction;
 import org.javacord.api.listener.interaction.SlashCommandCreateListener;
 
 import java.io.FileNotFoundException;
-import java.util.List;
 
 // Eliminating the dumpster fire of having 20 individual listeners since 2022.
 public class SlashCommandListener implements SlashCommandCreateListener {
@@ -25,7 +24,7 @@ public class SlashCommandListener implements SlashCommandCreateListener {
         Server server = slashCommandInteraction.getServer().orElse(null);
         String commandName = slashCommandInteraction.getCommandName();
         User author = slashCommandInteraction.getUser();
-        User user = slashCommandInteraction.getOptionUserValueByName("user").orElse(null);
+        User user = slashCommandInteraction.getArgumentUserValueByName("user").orElse(null);
 
         if (user == null) {
             user = author;
@@ -58,7 +57,7 @@ public class SlashCommandListener implements SlashCommandCreateListener {
                     .respond();
         }
         else if (commandName.equalsIgnoreCase(parseCommands.getCommandName("help"))) {
-            String command = slashCommandInteraction.getOptionStringValueByName("command-name").orElse("help");
+            String command = slashCommandInteraction.getArgumentStringValueByName("command-name").orElse("help");
             try {
                 slashCommandInteraction.createImmediateResponder()
                         .addEmbed(HelpEmbed.getHelp(command))

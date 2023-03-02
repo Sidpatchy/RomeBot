@@ -6,7 +6,6 @@ import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 
-import java.awt.*;
 import java.time.Instant;
 
 public class JoinedEmbed {
@@ -17,7 +16,13 @@ public class JoinedEmbed {
         if (instant == null) {instant = Instant.EPOCH;}
         long timestamp = instant.toEpochMilli();
 
-        String timeSinceJoin = DurationFormatUtils.formatDurationWords(System.currentTimeMillis() - user.getJoinedAtTimestamp(server).orElse(Instant.ofEpochMilli(0)).toEpochMilli(), true, false);
+        String timeSinceJoin;
+        if (server == null) {
+            timeSinceJoin = DurationFormatUtils.formatDurationWords(System.currentTimeMillis() - user.getCreationTimestamp().toEpochMilli(), true, false);
+        }
+        else {
+            timeSinceJoin = DurationFormatUtils.formatDurationWords(System.currentTimeMillis() - user.getJoinedAtTimestamp(server).orElse(Instant.ofEpochMilli(0)).toEpochMilli(), true, false);
+        }
 
         return new EmbedBuilder()
                 .setColor(Main.getColour())

@@ -5,8 +5,6 @@ import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 
-import java.awt.*;
-
 
 public class CrucifyEmbed {
     public static EmbedBuilder getCrucify(User user, User author, Server server) {

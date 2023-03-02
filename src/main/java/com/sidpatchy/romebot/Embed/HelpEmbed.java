@@ -1,16 +1,14 @@
 package com.sidpatchy.romebot.Embed;
 
-import com.sidpatchy.Discord.ParseCommands;
+import com.sidpatchy.Robin.Discord.ParseCommands;
 import com.sidpatchy.romebot.Main;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
-import java.awt.*;
+
 import java.io.FileNotFoundException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 public class HelpEmbed {
 

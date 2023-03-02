@@ -1,8 +1,8 @@
 package com.sidpatchy.romebot;
 
-import com.sidpatchy.Discord.ParseCommands;
-import com.sidpatchy.File.ConfigReader;
-import com.sidpatchy.File.ResourceLoader;
+import com.sidpatchy.Robin.Discord.ParseCommands;
+import com.sidpatchy.Robin.File.ResourceLoader;
+import com.sidpatchy.Robin.File.RobinConfiguration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
@@ -49,7 +49,8 @@ public class Main {
     // related to file handling
     private static String configFile = "config.yml";
     private static String commandsFile = "commands.yml";
-    static ParseCommands parseCommands = new ParseCommands(Main.getCommandsFile());
+    static ParseCommands parseCommands;
+    private static RobinConfiguration config;
 
     // Related to config options
     private static String token;
@@ -68,13 +69,16 @@ public class Main {
         loader.saveResource(configFile, false);
         loader.saveResource(commandsFile, false);
 
+        // Init config handlers
+        config = new RobinConfiguration("config/" + configFile);
+        parseCommands = new ParseCommands("config/" + commandsFile);
+
         // Read data from config file
-        ConfigReader config = new ConfigReader();
-        token = config.getString(configFile, "token");
-        colour = config.getString(configFile, "colour");
-        current_shard = config.getInt(configFile, "current_shard");
-        total_shards = config.getInt(configFile, "total_shards");
-        video_url = config.getString(configFile, "video_url");
+        token = config.getString("token");
+        colour = config.getString("colour");
+        current_shard = config.getInt("current_shard");
+        total_shards = config.getInt("total_shards");
+        video_url = config.getString("video_url");
 
         api = DiscordLogin(token, current_shard, total_shards);
 
@@ -143,6 +147,14 @@ public class Main {
             logger.fatal("There was an error while registering slash commands.");
             System.exit(5);
         }
+    }
+
+    public void migrateOldConfigFile() {
+        // future me, you're going to need to migrate everything to Robin v1.1.1 or later.
+    }
+
+    public static void migrateOldLangFile() {
+
     }
 
     public static long getStartMillis() { return startMillis; }
