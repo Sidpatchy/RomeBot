@@ -1,8 +1,17 @@
 # RomeBot
-[![Build Status](https://img.shields.io/jenkins/build?jobUrl=https%3A%2F%2Fci.sidpatchy.com%2Fjob%2FRomeBot%2F&style=flat-square)](https://ci.sidpatchy.com/job/RomeBot/)
+![Project Status](https://img.shields.io/badge/Project_Status-Unmaintained-f44336?style=flat-square)
 [![License](https://img.shields.io/github/license/Sidpatchy/RomeBot?style=flat-square)](https://github.com/Sidpatchy/RomeBot/blob/master/LICENSE)
 
 The only Discord bot dedicated to the everlasting Glory of Rome.
+
+## Status
+I've thought about this for a while, and finally concluded that RomeBot, while being surprisingly successful, is not a project I wish to continue actively maintaining any longer. I haven't been hosting the bot for a number of months, and its original purpose has been served.
+
+Prior to RomeBot, I barely knew how to code. My previous projects were pretty much exclusively comprised of me spending days upon days hacking together barely working C++ code on an Arduino. I didn't understand the code. RomeBot was where that changed, it's what lead me to the point I'm at now. When I started learning Java, RomeBot served to teach me how it worked.
+
+So with that, RomeBot's life as a standalone Discord bot is over. Perhaps someday, when I get around to writing the ClaireBot plugins API, RomeBot will make a comeback.
+
+Contributions will not be ignored.
 
 ## Getting Started
 RomeBot can be invited to a server using (put link here). Just use /help to get started!
